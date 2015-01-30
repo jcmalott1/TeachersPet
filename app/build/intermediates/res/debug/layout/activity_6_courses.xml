@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/BasicLayout"
+    tools:context="com.example.teacherspet.control.CoursesActivity" >
+
+    <!--  Course Button -->   
+    <Button 
+        android:id="@+id/btn_course0" 
+        style="@style/CenterVButton" 
+        android:visibility="gone" />
+    
+    <Button 
+        android:id="@+id/btn_course2" 
+        style="@style/CenterVButton" 
+        android:layout_above="@id/btn_course0"
+        android:visibility="gone" />
+    
+    <Button 
+        android:id="@+id/btn_course3" 
+        style="@style/CenterVButton" 
+        android:layout_above="@id/btn_course2"
+        android:visibility="gone" />
+    
+    <Button 
+        android:id="@+id/btn_course1" 
+        style="@style/CenterVButton" 
+        android:layout_below="@id/btn_course0"
+        android:visibility="gone" />
+    
+    <!--  Add Course Button 
+    Drawable Start for Version API 17 and above -->
+    <Button
+        android:id="@+id/btn_addCourse"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:drawableStart="@drawable/ic_add"
+        android:drawableLeft="@drawable/ic_add"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:onClick="onClicked"
+        />
+
+</RelativeLayout>
+<!-- From: file:/C:/Users/JC/AndroidstudioProjects/TeacherPet/app/src/main/res/layout/activity_6_courses.xml -->

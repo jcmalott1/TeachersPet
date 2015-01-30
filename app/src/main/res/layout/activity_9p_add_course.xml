@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/BasicLayout"
+    tools:context="com.example.teacherspet.control.AddCoursePActivity" >
+
+    <!-- Top Layout -->
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:orientation="vertical">
+        
+        <!-- ID Entry -->
+		<EditText 
+		   android:id="@+id/pid"
+		   style="@style/BasicEditText"
+		   android:inputType="number"
+		   android:hint="@string/lbl_enter_pID"/>
+		  
+		<!-- Name Entry -->
+		<EditText
+		   android:id="@+id/pname"
+		   style="@style/BasicEditText"
+		   android:hint="@string/lbl_enter_pName"/>
+		    
+		<!-- Course Entry -->
+		<EditText
+		   android:id="@+id/course"
+		   style="@style/BasicEditText"
+		   android:hint="@string/lbl_enter_course"/>
+		
+		<!-- School Term Entry -->
+		<EditText
+		   android:id="@+id/term"
+		   style="@style/BasicEditText" 
+		   android:hint="@string/lbl_enter_term"/>
+		
+		<!-- School Term Entry -->
+		<EditText
+		   android:id="@+id/section"
+		   style="@style/BasicEditText" 
+		   android:inputType="number"
+		   android:hint="@string/lbl_enter_section"/>
+		   
+		<!-- Class Time Entry -->
+		<EditText
+		   android:id="@+id/time"
+		   style="@style/BasicEditText"
+		   android:hint="@string/lbl_enter_cTime"/>
+	</LinearLayout>
+    
+    <!-- Submit Button -->
+    <Button
+        style="@style/ActionButton"
+        android:layout_alignParentBottom="true"
+        android:text="@string/lbl_submit"/>
+
+</RelativeLayout>

@@ -1,0 +1,21 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/BasicLayout"
+    tools:context="com.example.teacherspet.view.InformationActivity" >
+
+    <!-- File to be view, is set by what user clicks on -->
+    <ImageView
+        android:id="@+id/displayInfo"
+        android:layout_width="fill_parent" 
+        android:layout_height="fill_parent"
+        android:contentDescription="@string/image_descript"/>
+    
+    <!-- List information options -->
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+    </ListView>
+
+</RelativeLayout>
+<!-- From: file:/C:/Users/JC/AndroidstudioProjects/TeacherPet/app/src/main/res/layout/activity_14_information.xml -->

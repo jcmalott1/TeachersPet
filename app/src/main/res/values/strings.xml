@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- *******************************ADD COURSE****************************************** -->
+    <!-- Professor Version -->
+    <string name="lbl_enter_pID">Professors ID Number</string>
+    <string name="lbl_enter_pName">Professors Name</string>
+    <string name="lbl_enter_course">Course</string>
+    <string name="lbl_enter_term">Term</string>
+    <string name="lbl_enter_section">Section</string>
+    <string name="lbl_enter_cTime">Course Time</string>
+    <!-- Student Version -->
+    <string name="lbl_course_heading">Profeesor/Course/Section/Term/Time</string>
+
+    <!-- *******************************ALERTS****************************************** -->
+    <string name="lbl_teacher">Teacher</string>
+    <string name="lbl_semester">Semester</string>
+    <string name="lbl_time">Time</string>
+    <string name="lbl_alert_heading">Student/Course/Term/Time</string>
+
+    <!-- *******************************ATTENDANCE****************************************** -->
+    <string name="lbl_not_logged">Not Logged In</string>
+    <string name="lbl_logged">Logged In</string>
+
+    <!-- *******************************COMMON****************************************** -->
+    <string name="lbl_submit">Submit</string>
+    <string name="lbl_upload">Upload</string>
+    <string name="app_name">TeacherPet</string>
+    <string name="lbl_enter_username">Enter Username</string>
+    <string name="lbl_enter_pwd">Enter Password</string>
+    <string name="lbl_login">Login</string>
+    <string name="lbl_course">Course</string>
+    <string name="lbl_assignment">Assignment</string>
+    <string name="lbl_update">Update</string>
+    <string name="lbl_yes">Yes</string>
+    <string name="lbl_no">No</string>
+    <string name="date">(23 September 2014)</string>
+    <string name="image_descript">Image to be displayed</string>
+    <string name="title_activity_post_item">Post Item Screen</string>
+
+    <!-- *******************************COURSES****************************************** -->
+    <string name="lbl_CS496">CS496</string>
+
+    <!-- *******************************COURSE****************************************** -->
+    <string name="lbl_attendance">Attendance</string>
+    <string name="lbl_assignments">Assignments</string>
+    <string name="lbl_students">Students</string>
+    <string name="lbl_plan">Lesson Plan</string>
+    <string name="lbl_grades">Grades</string>
+    <string name="lbl_lab">Lab</string>
+    <string name="lbl_info">Additional Information</string>
+    <string name="lbl_find">Find</string>
+
+    <!-- *******************************FORGOT LOGIN****************************************** -->
+    <string name="lbl_920">920#</string>
+
+    <!-- *******************************GET_ITEM****************************************** -->
+    <string name="title_activity_get_item">Get Item Screen</string>
+
+    <!-- *******************************GRADES****************************************** -->
+    <string name="title_grades">Name Grade Complete Tardy</string>
+    <string name="title_activity_selected_grades">GradeSelected</string>
+
+    <!-- *******************************HOME****************************************** -->
+    <string name="lbl_alerts">Alerts</string>
+    <string name="lbl_courses">Courses</string>
+    <string name="lbl_schedule">Schedule</string>
+    <string name="lbl_settings">Settings</string>
+    <string name="title_activity_new_user">NewUserActivity</string>
+
+    <!-- *******************************HOMEWORK****************************************** -->
+    <string name="hName">HomeWork Name</string>
+    <string name="hPost">Posted Date</string>
+    <string name="hDue">Due Date</string>
+    <string name="hGrade">HomeWork Grade</string>
+    <string name="hsGrade">Student Grade</string>
+
+    <!-- *******************************LAB****************************************** -->
+    <string-array name="lab_array">
+        <item>Nested Loop Lab</item>
+    </string-array>
+
+    <string name="lab_comment">Enter Message Here!</string>
+    <string name="lab_name">Name of Lab</string>
+    <string name="lab_student">Students Name</string>
+    <string name="title_activity_login_fail">LoginFailActivity</string>
+    <string name="title_activity_lap_s">LapSActivity</string>
+    <string name="title_activity_attendance">AttendanceActivity</string>
+    <string name="title_activity_assignments">AssignmentsActivity</string>
+    <string name="title_activity_students">StudentsActivity</string>
+
+    <!-- *******************************LOGIN****************************************** -->
+    <string name="student_login">john</string>
+    <string name="student_login2">Boats</string>
+
+    <string-array name="login_array">
+        <item>student</item>
+        <item>professor</item>
+    </string-array>
+
+    <string name="lbl_newUser">New User</string>
+    <string name="lbl_forgot">Forgot Login</string>
+    <string name="hello_teacher">Welcome to Teachers Pet!</string>
+    <string name="title_activity_home_">Home_Activity</string>
+
+    <!-- *******************************NEW USER****************************************** -->
+    <string name="lbl_enter_name">Enter Name</string>
+    <string name="lbl_enter_id">Enter 920#</string>
+    <string name="lbl_enter_school">Enter School</string>
+    <string name="lbl_enter_email">Enter Email</string>
+    <string name="lbl_enter_password">Enter Password</string>
+    <string name="lbl_enter_pic">Enter Picture</string>
+    <string name="lbl_accountS">Student Account:</string>
+    <string name="lbl_accountP">Professor Account:</string>
+    <string name="title_activity_alerts">AlertsActivity</string>
+    <string name="title_activity_courses">CoursesActivity</string>
+    <string name="title_activity_schedule">ScheduleActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- *******************************SCHDULE****************************************** -->
+    <string name="lbl_monday">Monday</string>
+    <string name="lbl_tuesday">Tuesday</string>
+    <string name="lbl_wednesday">Wednesday</string>
+    <string name="lbl_thursday">Thursday</string>
+    <string name="lbl_friday">Friday</string>
+
+    <!-- *******************************Settings****************************************** -->
+    <string name="title_activity_course">CourseActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_selected_item">SelectedItem</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_add_course">AddCourseActivity</string>
+    <string name="title_activity_add_course_s">AddCourseSActivity</string>
+    <string name="title_activity_lab">LabActivity</string>
+    <string name="title_activity_info">InfoActivity</string>
+    <string name="title_activity_grades">GradesActivity</string>
+    <string name="title_activity_forgot_login">ForgotLoginActivity</string>
+    <string name="title_activity_information">InformationActivity</string>
+    <string name="title_activity_send_pid">SendPIDActivity</string>
+    <string name="title_activity_student_alert">Student Alert</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_check920">Check920Activity</string>
+    <string name="title_activity_delete_alert">DeleteAlertActivity</string>
+
+</resources>

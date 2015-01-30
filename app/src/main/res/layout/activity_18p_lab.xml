@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/BasicLayout"
+    tools:context="com.example.teacherspet.view.LabPActivity" >
+    
+    <!-- Top Layout -->
+    <LinearLayout
+        android:id="@+id/labForm"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical">
+        <!-- Complete Entry Based off Lab Titles -->
+        <AutoCompleteTextView
+            style="@style/AutoText"
+            android:id="@+id/autoLab"
+            android:hint="@string/lab_name"/>
+        <!-- Complete Entry Based off Student Names -->
+        <AutoCompleteTextView
+            style="@style/AutoText"
+            android:id="@+id/autoStudent"
+            android:hint="@string/lab_student"/>
+    </LinearLayout>
+        
+    <!-- Middle Layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerVertical="true">
+        <!-- Forum -->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/lab_comment"/>
+        <!-- Submit Button -->
+        <Button
+            style="@style/BasicButton"
+            android:text="@string/lbl_submit"/>
+    </LinearLayout>
+    
+</RelativeLayout>

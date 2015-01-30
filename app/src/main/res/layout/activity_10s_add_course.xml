@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/BasicLayout"
+    tools:context="com.example.teacherspet.control.AddCourseSActivity" >
+
+    <!-- Top Layout -->
+    <LinearLayout
+        android:id="@+id/addTop"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <!-- Professor Id Entry-->
+	    <EditText
+	        android:id="@+id/cID"
+	        android:inputType="number"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="3"
+	        android:hint="@string/lbl_enter_pID" />
+	    <!-- Submit Button -->
+	    <Button
+	        style="@style/ActionButton"
+	        android:id="@+id/btn_find"
+	        android:layout_weight="1"
+	        android:layout_width="0dp"
+	        android:text="@string/lbl_find"/>
+	    </LinearLayout>
+    
+    <!-- Middle Layout -->
+    <LinearLayout
+        android:id="@+id/mid"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/addTop">
+            <TextView         
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:gravity="center_horizontal"
+                 android:text="@string/lbl_course_heading"/>
+    </LinearLayout>
+        
+    <LinearLayout
+        android:id="@+id/viewLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mid"
+        android:background="@android:color/black">
+	    <!-- Display Course View -->
+        <ListView
+            android:id="@+id/courseView"
+            android:layout_width="fill_parent"
+            android:layout_height="175dp"
+            android:layout_margin="2dp"
+            android:background="@android:color/white"/>
+    </LinearLayout>
+    
+    <!-- Submit Button -->
+    <Button 
+        style="@style/ActionButton"
+        android:id="@+id/btn_submit"
+        android:layout_marginTop="5sp"
+        android:layout_below="@id/viewLayout"
+        android:text="@string/lbl_submit"/>
+
+</RelativeLayout>

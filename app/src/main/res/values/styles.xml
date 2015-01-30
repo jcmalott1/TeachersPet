@@ -1,0 +1,102 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    
+    
+    <!--***********************************BUTTONS********************************************-->
+    <!--For all basic touch buttons-->
+    <style name="BasicButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+     <!-- Button with user interactivity -->
+    <style name="ActionButton" parent="@style/BasicButton">
+        <item name="android:onClick">onClicked</item>
+    </style>
+    
+    <!-- Button Centered Vertically on Screen with Action-->
+    <style name="CenterVButton" parent="@style/ActionButton">
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+    
+    
+    
+    <!--***********************************LAYOUTS********************************************-->
+    <!-- Basic Layout Heading -->
+    <style name="BasicLayout">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:paddingBottom">@dimen/activity_vertical_margin</item>
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingTop">@dimen/activity_vertical_margin</item>
+    </style>
+    
+    
+    
+    <!--***********************************TABLES********************************************-->
+    <!--Heading for all tables  -->
+    <style name="TableHeading">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">1</item>
+	    <item name="android:textStyle">bold</item>
+	    <item name="android:textSize">12sp</item>
+	    <item name="android:textColor">@android:color/black</item>
+    </style>
+    
+    
+    
+    <!--***********************************TEXT********************************************-->
+    <!--Basic style for Text -->
+    <style name="BasicText">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+    
+    <!--Basic style for Text -->
+    <style name="BasicEditText">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:inputType">text</item>
+    </style>
+    
+     <!--Basic style for Text Titles-->
+    <style name="TitleText">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+     <!--Basic style for AutoComplete Text-->
+    <style name="AutoText">
+        <item name="android:layout_width">200sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:inputType">text|textAutoCorrect</item>
+    </style>
+
+</resources>

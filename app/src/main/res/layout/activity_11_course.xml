@@ -1,0 +1,52 @@
+<!-- Makes Screen Scrollable -->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    
+    <!-- Layout For Screen -->
+	<LinearLayout
+	    android:orientation="vertical"
+	    style="@style/BasicLayout"
+	    tools:context="com.example.teacherspet.control.CourseActivity" >
+	
+	    <!-- Attendance Button -->
+	    <Button 
+	        android:id="@+id/btn_attendance"
+	        android:text="@string/lbl_attendance"
+	        style="@style/CenterVButton" />
+	    <!-- Assignments Button -->
+	    <Button 
+	        android:id="@+id/btn_assignments"
+	        android:text="@string/lbl_assignments"
+	        style="@style/CenterVButton" />
+	    <!-- Students Button -->
+	    <Button 
+	        android:id="@+id/btn_students"
+	        android:text="@string/lbl_students"
+	        style="@style/CenterVButton" />
+	    <!-- Lesson Plan Button
+	    This is not a must, so waiting until later to implement
+	    <Button 
+	        android:id="@+id/btn_plan"
+	        android:text="@string/lbl_plan"
+	        style="@style/CenterVButton" />-->
+	    <!-- Grades Button -->
+	    <Button 
+	        android:id="@+id/btn_grades"
+	        android:text="@string/lbl_grades"
+	        style="@style/CenterVButton" />
+	    <!-- Lab Button -->
+	    <Button 
+	        android:id="@+id/btn_lab"
+	        android:text="@string/lbl_lab"
+	        style="@style/CenterVButton" />
+	    <!-- Information Button -->
+	    <Button 
+	        android:id="@+id/btn_info"
+	        android:text="@string/lbl_info"
+	        style="@style/CenterVButton" />
+	
+	</LinearLayout>
+</ScrollView>

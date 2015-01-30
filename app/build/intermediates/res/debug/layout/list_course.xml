@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+ 
+    <!-- Product id (pid) - will be HIDDEN - used to pass to other activity -->
+    <TextView
+        android:id="@+id/pid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+ 
+    <!-- Name Label -->
+    <TextView
+        android:id="@+id/pname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="10dip"
+        android:gravity="center"
+        android:layout_weight="1" 
+        android:text="pName"/>
+    
+    <TextView
+        android:id="@+id/course"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="10dip"
+        android:layout_weight=".5" 
+        android:gravity="center"
+        android:text="course" />
+    
+    <TextView
+        android:id="@+id/section"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="10dip"
+        android:layout_weight=".2" 
+        android:gravity="center"
+        android:text="section" />
+    
+    <TextView
+        android:id="@+id/term"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="10dip"
+        android:layout_weight="1" 
+        android:gravity="center"
+        android:text="term"/>
+    
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="10dip"
+        android:layout_weight="1" 
+        android:gravity="center"
+        android:text="time"/>
+ 
+</LinearLayout><!-- From: file:/C:/Users/JC/AndroidstudioProjects/TeacherPet/app/src/main/res/layout/list_course.xml -->

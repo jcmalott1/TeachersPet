@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/BasicLayout"
+    android:orientation="vertical"
+    tools:context="com.example.teacherspet.view.GradesActivity" >
+    
+    <!-- Title  -->
+    <TextView
+        style="@style/TitleText"
+        android:id="@+id/listTitle"
+        android:text="@string/title_grades"/>
+
+    <!-- Student Grades -->
+    <ListView
+        android:id="@android:id/list"
+        android:layout_below="@id/listTitle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        
+    </ListView>
+</RelativeLayout>
+<!-- From: file:/C:/Users/JC/AndroidstudioProjects/TeacherPet/app/src/main/res/layout/activity_17s_grades.xml -->

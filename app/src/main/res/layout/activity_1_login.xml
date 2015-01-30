@@ -1,0 +1,81 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/BasicLayout"
+    tools:context="com.example.teacherspet.control.LoginActivity" >
+
+    <!-- Header for Screen -->
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_teacher" 
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:background="@android:color/black"
+        android:gravity="center"/>
+    
+    <!-- User Name Block -->
+    <LinearLayout
+        android:id="@+id/uname_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:layout_marginTop="20dp">
+        <!-- User Name Entry -->
+        <EditText
+            android:id="@+id/fld_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/student_login" 
+            android:inputType="text"
+            android:textSize="13sp"
+            />
+    </LinearLayout>
+    
+    <!-- Password Block -->
+    <LinearLayout
+        android:id="@+id/pwd_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/uname_block"
+        android:layout_marginTop="20dp">
+        <!-- Password Entry -->
+        <EditText
+            android:id="@+id/fld_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/student_login2"
+            android:inputType="textPassword"
+            android:textSize="13sp"
+            />
+    </LinearLayout>
+    
+    <!-- Login Button -->
+     <Button 
+         style="@style/ActionButton"
+         android:id="@+id/btn_login"
+         android:layout_below="@id/pwd_block"
+         android:text="@string/lbl_login"
+         android:layout_marginTop="15dp"
+         />
+     
+     <!-- Forgot Button -->
+     <Button 
+         style="@style/ActionButton"
+         android:id="@+id/btn_forgot"
+         android:layout_below="@id/btn_login"
+         android:text="@string/lbl_forgot"
+         android:layout_marginTop="1dp"
+         />
+     
+     <!-- New User Button -->
+     <Button 
+         style="@style/BasicButton"
+         android:id="@+id/btn_newUser"
+         android:layout_below="@id/btn_forgot"
+         android:text="@string/lbl_newUser"
+         android:layout_marginTop="1dp"       
+         />
+
+</RelativeLayout>

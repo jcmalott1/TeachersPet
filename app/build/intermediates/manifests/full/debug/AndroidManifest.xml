@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.teacherspet"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="20" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.example.teacherspet.control.LoginActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.control.HomeActivity"
+            android:label="@string/title_activity_home_"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.control.NewUserActivity"
+            android:label="@string/title_activity_new_user"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.control.AlertsActivity"
+            android:label="@string/title_activity_alerts"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.control.CoursesActivity"
+            android:label="@string/title_activity_courses"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.control.ScheduleActivity"
+            android:label="@string/title_activity_schedule"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.view.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.control.CourseActivity"
+            android:label="@string/title_activity_course"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.model.SelectedItem"
+            android:label="@string/title_activity_selected_item"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.DetailActivity"
+            android:label="@string/title_activity_detail"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.control.AddCoursePActivity"
+            android:label="@string/title_activity_add_course"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.control.AddCourseSActivity"
+            android:label="@string/title_activity_add_course_s"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.view.LabPActivity"
+            android:label="@string/title_activity_lab"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.InfoActivity"
+            android:label="@string/title_activity_info"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.model.GetItemActivity"
+            android:label="@string/title_activity_get_item"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.view.GradesActivity"
+            android:label="@string/title_activity_grades"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.control.ForgotLoginActivity"
+            android:label="@string/title_activity_forgot_login"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.view.InformationActivity"
+            android:label="@string/title_activity_information"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.LoginFailActivity"
+            android:label="@string/title_activity_login_fail"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.view.SelectedGradesActivity"
+            android:label="@string/title_activity_selected_grades"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.view.LabSActivity"
+            android:label="@string/title_activity_lap_s"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.view.AttendanceActivity"
+            android:label="@string/title_activity_attendance"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.control.AssignmentsActivity"
+            android:label="@string/title_activity_assignments"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.control.StudentsActivity"
+            android:label="@string/title_activity_students"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.model.PostItemActivity"
+            android:label="@string/title_activity_post_item"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.model.StudentAlertActivity"
+            android:label="@string/title_activity_student_alert"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.model.Check920Activity"
+            android:label="@string/title_activity_check920"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.model.DeleteAlertActivity"
+            android:label="@string/title_activity_delete_alert"
+            android:screenOrientation="portrait" >
+        </activity>
+    </application>
+
+</manifest>
