@@ -85,7 +85,30 @@
     <color name="abc_search_url_text_selected">@android:color/black</color>
     <!-- From: file:/C:/Users/JC/AndroidstudioProjects/TeacherPet/app/src/main/res/values/colors.xml -->
     <eat-comment/>
+    <color name="black">#000000</color>
+    <color name="blue">#222266</color>
+    <color name="brown">#774422</color>
+    <color name="cyan">#00FFFF</color>
+    <color name="dk_blue">#111133</color>
+    <color name="dk_green">#113311</color>
+    <color name="dk_grey">#444444</color>
+    <color name="dk_pink">#440044</color>
+    <color name="dk_red">#331111</color>
+    <color name="green">#226622</color>
+    <color name="grey">#999999</color>
+    <color name="lt_blue">#4444cc</color>
+    <color name="lt_green">#44CC44</color>
+    <color name="lt_grey">#bbbbbb</color>
+    <color name="lt_pink">#FF88FF</color>
+    <color name="lt_red">#CC4444</color>
+    <color name="magenta">#FF00FF</color>
+    <color name="orange">#dd8822</color>
+    <color name="purple">#6644CC</color>
+    <color name="purple1">#5566FFCC</color>
+    <color name="red">#662222</color>
+    <color name="red1">#77662222</color>
     <color name="trans">#80000000</color>
+    <color name="white">#ffffff</color>
     <color name="yellow">#FFFF00</color>
     <declare-styleable name="ActionBar"><attr name="navigationMode"><enum name="normal" value="0"/><enum name="listMode" value="1"/><enum name="tabMode" value="2"/></attr><attr name="displayOptions"><flag name="useLogo" value="0x1"/><flag name="showHome" value="0x2"/><flag name="homeAsUp" value="0x4"/><flag name="showTitle" value="0x8"/><flag name="showCustom" value="0x10"/><flag name="disableHome" value="0x20"/></attr><attr name="title"/><attr format="string" name="subtitle"/><attr format="reference" name="titleTextStyle"/><attr format="reference" name="subtitleTextStyle"/><attr format="reference" name="icon"/><attr format="reference" name="logo"/><attr format="reference" name="divider"/><attr format="reference" name="background"/><attr format="reference|color" name="backgroundStacked"/><attr format="reference|color" name="backgroundSplit"/><attr format="reference" name="customNavigationLayout"/><attr name="height"/><attr format="reference" name="homeLayout"/><attr format="reference" name="progressBarStyle"/><attr format="reference" name="indeterminateProgressStyle"/><attr format="dimension" name="progressBarPadding"/><attr format="dimension" name="itemPadding"/></declare-styleable>
     <declare-styleable name="ActionBarLayout"><attr name="android:layout_gravity"/></declare-styleable>
@@ -252,6 +275,7 @@
     <string name="title_activity_selected_item">SelectedItem</string>
     <string name="title_activity_send_pid">SendPIDActivity</string>
     <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
     <string name="title_activity_student_alert">Student Alert</string>
     <string name="title_activity_students">StudentsActivity</string>
     <string name="title_alert">Alert</string>

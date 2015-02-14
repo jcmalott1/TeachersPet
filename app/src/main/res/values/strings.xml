@@ -146,5 +146,6 @@
     <string name="title_activity_delete_alert">DeleteAlertActivity</string>
     <string name="title_activity_enroll_student">EnrollStudentActivity</string>
     <string name="title_activity_ATTN">Attendance</string>
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
 
 </resources>
