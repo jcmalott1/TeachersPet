@@ -5,8 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:padding="10dp"
-    android:textSize="15sp" >
+    android:textSize="20dp" >
 </TextView>
 
 <!-- From: file:/C:/Users/JC/AndroidstudioProjects/TeacherPet/app/src/main/res/layout/list_item.xml -->

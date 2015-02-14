@@ -23,12 +23,11 @@
     
     <Button 
         android:id="@+id/btn_course1" 
-        style="@style/CenterVButton" 
+        style="@style/CenterVButton"
         android:layout_below="@id/btn_course0"
         android:visibility="gone" />
     
-    <!--  Add Course Button 
-    Drawable Start for Version API 17 and above -->
+    <!--  Add Course Button-->
     <Button
         android:id="@+id/btn_addCourse"
         android:layout_height="wrap_content"

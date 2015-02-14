@@ -11,7 +11,7 @@
         
         <!-- ID Entry -->
 		<EditText 
-		   android:id="@+id/pid"
+		   android:id="@+id/cid"
 		   style="@style/BasicEditText"
 		   android:inputType="number"
 		   android:hint="@string/lbl_enter_pID"/>
@@ -20,6 +20,7 @@
 		<EditText
 		   android:id="@+id/pname"
 		   style="@style/BasicEditText"
+           android:digits="@string/alphabet"
 		   android:hint="@string/lbl_enter_pName"/>
 		    
 		<!-- Course Entry -->
@@ -33,6 +34,12 @@
 		   android:id="@+id/term"
 		   style="@style/BasicEditText" 
 		   android:hint="@string/lbl_enter_term"/>
+
+        <!-- Class Time Entry -->
+        <EditText
+            android:id="@+id/time"
+            style="@style/BasicEditText"
+            android:hint="@string/lbl_enter_cTime"/>
 		
 		<!-- School Term Entry -->
 		<EditText
@@ -40,12 +47,7 @@
 		   style="@style/BasicEditText" 
 		   android:inputType="number"
 		   android:hint="@string/lbl_enter_section"/>
-		   
-		<!-- Class Time Entry -->
-		<EditText
-		   android:id="@+id/time"
-		   style="@style/BasicEditText"
-		   android:hint="@string/lbl_enter_cTime"/>
+
 	</LinearLayout>
     
     <!-- Submit Button -->

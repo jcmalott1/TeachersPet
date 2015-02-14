@@ -15,7 +15,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_width="fill_parent"
 	        android:hint="@string/lbl_enter_name"
-            android:inputType="text"/>
+            android:digits="@string/alphabet"/>
 
         <!-- Enter ID Entry -->
         <EditText
@@ -31,7 +31,7 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:hint="@string/lbl_enter_school"
-	        android:inputType="text"/>
+            android:digits="@string/alphabet"/>
 
         <!-- Enter Email Entry -->
         <EditText

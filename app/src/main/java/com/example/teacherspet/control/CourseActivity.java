@@ -1,19 +1,17 @@
 package com.example.teacherspet.control;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+
 import com.example.teacherspet.R;
-import com.example.teacherspet.view.AttendanceActivity;
+import com.example.teacherspet.model.BasicActivity;
 import com.example.teacherspet.view.GradesActivity;
 import com.example.teacherspet.view.InformationActivity;
 import com.example.teacherspet.view.LabPActivity;
 import com.example.teacherspet.view.LabSActivity;
 import com.example.teacherspet.view.SelectedGradesActivity;
-
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.view.View;
 
 /**
  * Back end for user interaction for Course Screen
@@ -21,12 +19,8 @@ import android.view.View;
  * @author Johnathon Malott, Kevin James
  * @version 10/7/2014 
  */
-public class CourseActivity extends Activity {
-	//To access and modify preference data
-	SharedPreferences sharedPref;
-	//Data that was stored
-	String pref;
-
+public class CourseActivity extends BasicActivity {
+     String accountType;
 	/**
 	 * When screen is created set to course layout.
 	 * 
@@ -37,11 +31,10 @@ public class CourseActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_11_course);
-		
-		//Access a preference file and require that only this application access it
-		sharedPref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-		//Get string that is stored under status
-		pref = sharedPref.getString("status",null);
+
+		//Get the type of account user has
+		accountType = super.getType();
+        Log.d("Type", accountType);
 	}
 
 	/**
@@ -54,10 +47,16 @@ public class CourseActivity extends Activity {
 		Intent intent;
 		//Screen that will be changed to.
 		Class<?> toScreen;
+        //
+        Boolean typeP = accountType.equals("p");
 		
 		switch(view.getId()){
 		    case R.id.btn_attendance:
-		    	toScreen = AttendanceActivity.class;
+                if(typeP)
+		    	    toScreen = AttendancePActivity.class;
+                else{
+                    toScreen = AttendanceSActivity.class;
+                }
 		    	break;
 		    case R.id.btn_assignments:
 		    	toScreen = AssignmentsActivity.class;
@@ -71,14 +70,14 @@ public class CourseActivity extends Activity {
 		    	break;*/
 		    case R.id.btn_grades:
 		    	//Screen is different depending if user is student or professor
-		    	if(pref.equals("student"))
+		    	if(typeP)
 		    	    toScreen = SelectedGradesActivity.class;
 		    	else
 		    		toScreen = GradesActivity.class;
 		    	break;
 		    case R.id.btn_lab:
 		    	//Screen is different depending if user is student or professor
-		    	if(pref.equals("student"))
+		    	if(typeP)
 		    	    toScreen = LabSActivity.class;
 		    	else
 		    		toScreen = LabPActivity.class;
@@ -90,7 +89,7 @@ public class CourseActivity extends Activity {
 		   		toScreen = HomeActivity.class;
 		}
 		
-		 intent = new Intent(CourseActivity.this, toScreen);
+		 intent = new Intent(this, toScreen);
 		 startActivity(intent);
 	}
 }

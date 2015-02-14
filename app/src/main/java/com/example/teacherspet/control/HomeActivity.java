@@ -1,11 +1,11 @@
 package com.example.teacherspet.control;
 
-import com.example.teacherspet.R;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.teacherspet.model.BasicActivity;
+import com.example.teacherspet.R;
 
 /**
  * Back end for user interaction for Home Screen
@@ -13,7 +13,7 @@ import android.view.View;
  * @author Johnathon Malott, Kevin James
  * @version 10/7/2014 
  */
-public class HomeActivity extends Activity {
+public class HomeActivity extends BasicActivity {
 
 	/**
 	 * When screen is created set to professor add course layout.
@@ -55,8 +55,7 @@ public class HomeActivity extends Activity {
 		    default:
 		   		toScreen = HomeActivity.class;
 		}
-		
-		 intent = new Intent(HomeActivity.this, toScreen);
-		 startActivity(intent);
+
+        super.start(this, toScreen, false);
 	}
 }

@@ -1,6 +1,5 @@
 package com.example.teacherspet.control;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,25 +7,24 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.teacherspet.model.BasicActivity;
 import com.example.teacherspet.R;
-import com.example.teacherspet.model.PostItemActivity;
 
 /**
- * Back endd for user interaction for New User Screen.
+ * Handles back end for user interaction when creating a New User.
  *  
  * @author Johnathon Malott, Kevin James
  * @version 10/7/2014 
  */
-public class NewUserActivity extends Activity {
+public class NewUserActivity extends BasicActivity {
 	//URL to add user to database
     private static final String url_create_user = "https://morning-castle-9006.herokuapp.com/create_user.php";
-    //Id so intent knows who is calling it
-    private static int REQUEST_CODE = 0;
     //Name of field in database
-    String[] itemNames;
+    //String[] itemNames;
     //Values to place into those fields
-    String[] itemValues;
+    //String[] itemValues;
     //Checks if student/professor account was checked
+    String name, accountnumber, college, email, password;
     CheckBox student;
     CheckBox professor;
 	
@@ -46,41 +44,27 @@ public class NewUserActivity extends Activity {
 	}
 	
 	/**
-	 * Change user interface from New User to Home screen
+	 * Submits data to database if one of the boxes is checked
 	 * 
 	 * @param view View that was interacted with by user.
 	 */
 	public void onClicked(View view){
 		//Action to hold screen change.
 		if(view.getId() == R.id.btn_submit){
-			if(student.isChecked() || professor.isChecked()){
+			if((student.isChecked() || professor.isChecked()) && isValidInput()){
 				sendItems();
 			}
 		}
-			
-			/**Action to hold screen change.
-			if(view.getId() == R.id.btn_submit) {
-				Intent foo = new Intent(NewUserActivity.this, Check920Activity.class);
-				foo.putExtra("920", inputAccountnumber.getText().toString());
-				startActivityForResult(foo, 1);
-				if (isValidInput(inputName, inputAccountnumber, inputCollege, inputEmail, inputPassword)) {
-					sendItems();
-				}
-			}*/
 	}
 	
 	/**
 	 * Send items to Post Activity to deliver to database from php file
 	 */
 	public void sendItems(){
-		itemNames = new String[]{"name","accountnumber","college","email","password","accounttype"};
-		itemValues = getValues();
-		
-		Intent i = new Intent(NewUserActivity.this, PostItemActivity.class);
-		i.putExtra("itemNames", itemNames);
-		i.putExtra("itemValues", itemValues);
-		i.putExtra("url", url_create_user);
-		startActivityForResult(i, REQUEST_CODE);
+		String [] itemNames = new String[]{"name","accountnumber","college","email","password","accounttype"};
+		String [] itemValues = getValues();
+
+        super.sendData("", itemNames, itemValues, url_create_user, this, false);
 	}
 	
 	/**
@@ -97,15 +81,16 @@ public class NewUserActivity extends Activity {
 	    if (requestCode == 0) {
 	    	//Tells if items where added or not. 1 mean successful
 	    	int success = data.getIntExtra("success", -1);
-	    	if(success == 1){
+	    	if(success == 0){
 	    		Toast.makeText(getApplicationContext(), "User created", Toast.LENGTH_SHORT).show();
-	    	}else if(success == 0){
+	    	}else {
 	    		Toast.makeText(getApplicationContext(), "No account created", Toast.LENGTH_SHORT).show();
 	    	}
 	    }
-	    Intent i = new Intent(NewUserActivity.this, LoginActivity.class);
-	    startActivity(i);
-	    finish();
+        super.start(this, LoginActivity.class, true);
+	    //Intent i = new Intent(NewUserActivity.this, LoginActivity.class);
+	    //startActivity(i);
+	    //finish();
 	}
 	
 	/**
@@ -114,17 +99,6 @@ public class NewUserActivity extends Activity {
 	 * @return A list of all values entered by user.
 	 */
 	private String[] getValues(){
-		EditText inputName = (EditText) findViewById(R.id.fld_name);
-		EditText inputAccountnumber = (EditText) findViewById(R.id.fld_id);
-		EditText inputCollege = (EditText) findViewById(R.id.fld_school);
-		EditText inputEmail = (EditText) findViewById(R.id.fld_email);
-		EditText inputPassword = (EditText) findViewById(R.id.fld_password);
-		
-		String name = inputName.getText().toString();
-        String accountnumber = inputAccountnumber.getText().toString();
-        String college = inputCollege.getText().toString();
-        String email = inputEmail.getText().toString();
-        String password = inputPassword.getText().toString();
         //Student by default
         String accounttype = "s";
         
@@ -148,31 +122,24 @@ public class NewUserActivity extends Activity {
 	 * 		  inputEmail - Email address
 	 * 		  inputPassword - Password
 	 **/
-	public boolean isValidInput(String name, String accountnumber, String college, String email, String password) {
+	public boolean isValidInput() {
+        getText();
         // Holds toast response
         String response;
-        // Name must NOT have numbers in it
-        if (name.matches(".*\\d+.*")) {
-        	response = "Name cannot contain numbers.";
-        }
         // Check account number for length, and to see it contains '920'
-        else if (accountnumber.length() != 9) {
+        if (accountnumber.length() != 9) {
         	response = "Invalid account number length.";
         }
         else if (!accountnumber.matches("920\\d{6}")) {
         	response = "Account number must start with '920'.";
         }
-        // College name must NOT have numbers in it
-        else if (college.matches(".*\\d+.*")) {
-        	response = "College name cannot contain numbers.";
-        }
         // Email must have '.edu' suffix
         else if (!email.matches("\\w+@.+\\.edu")) {
         	response = "Email must have '.edu' suffix.";
         }
-        // Minimum password length is 7
-        else if (password.length() < 7) {
-        	response = "Password must be at least 7 characters long.";
+        // Minimum password length is 4
+        else if (password.length() < 4) {
+        	response = "Password must be at least 4 characters long.";
         }
         else {
         	// Success
@@ -182,5 +149,16 @@ public class NewUserActivity extends Activity {
         Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
         return false;
 	}
+
+    /**
+     * Gets text that user has input into fields.
+     */
+    private void getText(){
+        name = ((EditText) findViewById(R.id.fld_name)).getText().toString();
+        accountnumber = ((EditText) findViewById(R.id.fld_id)).getText().toString();
+        college = ((EditText) findViewById(R.id.fld_school)).getText().toString();
+        email = ((EditText) findViewById(R.id.fld_email)).getText().toString();
+        password = ((EditText) findViewById(R.id.fld_password)).getText().toString();
+    }
 
 }

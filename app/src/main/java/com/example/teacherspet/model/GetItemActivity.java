@@ -1,7 +1,11 @@
 package com.example.teacherspet.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -9,12 +13,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * Finds the data that the user wants and sends it back in a item list.
  * 
@@ -56,8 +56,8 @@ public class GetItemActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Intent intent = getIntent();
-		itemsPassed = intent.getStringArrayExtra("dataPassed");
-		itemsNeeded = intent.getStringArrayExtra("dataNeeded");
+		itemsPassed = intent.getStringArrayExtra("data1");
+		itemsNeeded = intent.getStringArrayExtra("data2");
 		JSONTag = intent.getStringExtra("JSONTag");
 		url_to_go = intent.getStringExtra("url");
 		
@@ -83,7 +83,8 @@ public class GetItemActivity extends Activity{
         }
  
         /**
-         * Connects to the database and retrieves the data that the user requested.
+         * Connects to the database and retrieves the data that the user requested can returns it.
+         * If data can't be found then a message about why is returned instead.
          * */
         @Override
 		protected String doInBackground(String... args) {
@@ -91,7 +92,7 @@ public class GetItemActivity extends Activity{
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             for(int i = 0; i < itemsPassed.length; i += 2){
             params.add(new BasicNameValuePair(itemsPassed[i], itemsPassed[(i+1)]));
-              Log.d("920#: ", itemsPassed[(i+1)]);
+             // Log.d("#DATA: ", itemsPassed[(i+1)]);
             }
             
             // getting JSON string from URL
@@ -103,15 +104,15 @@ public class GetItemActivity extends Activity{
             try {
                 // Checking for SUCCESS TAG
                 int success = json.getInt(TAG_SUCCESS);
-                String success2 = json.getString("message");
+                String sMessage = json.getString("message");
                 Log.d("SUCCESS: ", "" + success);
-                Log.d("MESSAGE: ", "" + success2);
+                Log.d("MESSAGE: ", "" + sMessage);
  
-                if (success == 1) {
+                if (success == 0) {
                     // item found
                     // Getting Array of items
                     courses = json.getJSONArray(JSONTag);
-                    Log.d("TAG: ", "success");
+                   Log.d("Items: ", courses.toString());
  
                     // looping through All items
                     for (int i = 0; i < courses.length(); i++) {
@@ -120,7 +121,7 @@ public class GetItemActivity extends Activity{
                         String[] items = new String[itemsNeeded.length];
                         for(int j = 0; j < itemsNeeded.length; j++){
                         	items[j] = c.getString(itemsNeeded[j]);
-                        	Log.d("Course: ", items[j]);
+                        	Log.d("GET ITEM: ", items[j]);
                         }
                         //Store row 
                         calling.putExtra(("item" + i ), items);
@@ -129,7 +130,11 @@ public class GetItemActivity extends Activity{
                     calling.putExtra("count", (""+courses.length()));
                     //if call to database failed or not
                     calling.putExtra("success", success);
-                } 
+                } else{
+                    //If data not found send back why
+                    calling.putExtra("success", success);
+                    calling.putExtra("message", sMessage);
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }

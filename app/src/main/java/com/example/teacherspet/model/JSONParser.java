@@ -87,6 +87,7 @@ public class JSONParser {
 			}
 			is.close();
 			json = sb.toString();
+            Log.d("JSON STRING: ", json);
 		}catch(Exception e){
 			Log.e("Error","Error converting result " + e.toString());
 		}

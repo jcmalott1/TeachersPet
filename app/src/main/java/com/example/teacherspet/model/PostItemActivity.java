@@ -1,19 +1,19 @@
 package com.example.teacherspet.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Collects data from user and inserts into database.
@@ -50,8 +50,8 @@ public class PostItemActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Intent intent = getIntent();
-		itemNames = intent.getStringArrayExtra("itemNames");
-		itemValues = intent.getStringArrayExtra("itemValues");
+		itemNames = intent.getStringArrayExtra("data1");
+		itemValues = intent.getStringArrayExtra("data2");
 		url_to_go = intent.getStringExtra("url");
 		//Log.d("URL: ", url_to_go);
 		new PostItem().execute();
@@ -107,11 +107,12 @@ public class PostItemActivity extends Activity{
             try {
             	//Find out if row was created
                 int success = json.getInt(TAG_SUCCESS);
-                String success2 = json.getString("message");
+                String sMessage = json.getString("message");
                 Log.d("Success: ", "" + success);
-                Log.d("Message: ", "" + success2);
+                Log.d("Message: ", "" + sMessage);
                 //1 means that it passed
                 calling.putExtra("success", success);
+                calling.putExtra("message", sMessage);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

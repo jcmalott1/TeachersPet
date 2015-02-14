@@ -1,14 +1,14 @@
 package com.example.teacherspet.view;
 
-import com.example.teacherspet.R;
-import com.example.teacherspet.model.PetAdapter;
-
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.teacherspet.R;
+import com.example.teacherspet.model.PetAdapter;
 
 /**
  * User interaction for Information Screen.
@@ -34,8 +34,8 @@ public class InformationActivity extends ListActivity {
 		setContentView(R.layout.activity_14_information);
 		info = new String[]{"Course Outline", "Syllabus"};
 		
-		infoAdapter = new PetAdapter(this, info);
-		setListAdapter(infoAdapter);
+		//infoAdapter = new PetAdapter(this, info);
+		//setListAdapter(infoAdapter);
 	}
 	
 	/**

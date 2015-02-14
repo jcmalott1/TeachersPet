@@ -1,15 +1,15 @@
 package com.example.teacherspet.control;
 
 
-import com.example.teacherspet.model.PetAdapter;
-import com.example.teacherspet.model.SelectedItem;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.teacherspet.model.PetAdapter;
+import com.example.teacherspet.model.SelectedItem;
 
 /**
  * Back end for user interaction for Schedule Screen.
@@ -34,8 +34,8 @@ public class ScheduleActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		
 		//values_array comes from res/values/string
-		scheduleArrayAdapter = new PetAdapter(this, DAYS);
-		setListAdapter(scheduleArrayAdapter);
+		//scheduleArrayAdapter = new PetAdapter(this, DAYS);
+		//setListAdapter(scheduleArrayAdapter);
 	}
 	
 	/**

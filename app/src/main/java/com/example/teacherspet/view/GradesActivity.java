@@ -1,14 +1,14 @@
 package com.example.teacherspet.view;
 
-import com.example.teacherspet.R;
-import com.example.teacherspet.model.PetAdapter;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.teacherspet.R;
+import com.example.teacherspet.model.PetAdapter;
 
 /**
  * User interaction for Grades screen
@@ -38,8 +38,8 @@ public class GradesActivity extends ListActivity {
 
 	    stringArray = new String[]{"John Smith 98  3/3  0/3",
 	    		                   "Sue Smith 70  2/3  1/3"};
-	    itemArrayAdapter = new PetAdapter(this, stringArray);
-	    setListAdapter(itemArrayAdapter);
+	    //itemArrayAdapter = new PetAdapter(this, stringArray);
+	    //setListAdapter(itemArrayAdapter);
 	}
 	
 	/**

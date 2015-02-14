@@ -1,0 +1,21 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/BasicLayout"
+    tools:context="com.example.teacherspet.control.AttendancePActivity" >
+
+            <!-- Title -->
+         <TextView
+             android:id="@+id/attnTitle"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:gravity="center"
+             android:textSize="20dp"
+             android:layout_marginBottom="20dp"/>
+          <!-- Middle -->
+          <TextView
+              android:id="@+id/attnView"
+              android:layout_below="@id/attnTitle"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"/>
+
+</RelativeLayout>

@@ -24,6 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Control -->
         <activity
             android:name=".control.HomeActivity"
             android:label="@string/title_activity_home_"
@@ -50,24 +52,9 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".view.SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
             android:name=".control.CourseActivity"
             android:label="@string/title_activity_course"
             android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".model.SelectedItem"
-            android:label="@string/title_activity_selected_item"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".DetailActivity"
-            android:label="@string/title_activity_detail" 
-            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".control.AddCoursePActivity"
@@ -80,53 +67,8 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".view.LabPActivity"
-            android:label="@string/title_activity_lab" 
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name=".InfoActivity"
-            android:label="@string/title_activity_info"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".model.GetItemActivity"
-            android:label="@string/title_activity_get_item" 
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name=".view.GradesActivity"
-            android:label="@string/title_activity_grades"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
             android:name=".control.ForgotLoginActivity"
             android:label="@string/title_activity_forgot_login"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".view.InformationActivity"
-            android:label="@string/title_activity_information" 
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name=".LoginFailActivity"
-            android:label="@string/title_activity_login_fail" 
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name=".view.SelectedGradesActivity"
-            android:label="@string/title_activity_selected_grades"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".view.LabSActivity"
-            android:label="@string/title_activity_lap_s" 
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name=".view.AttendanceActivity"
-            android:label="@string/title_activity_attendance"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -138,6 +80,67 @@
             android:name=".control.StudentsActivity"
             android:label="@string/title_activity_students"
             android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".control.AttendancePActivity"
+            android:label="@string/title_activity_attendance"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".control.AttendanceSActivity"
+            android:label="@string/title_activity_attendance"
+            android:screenOrientation="portrait" >
+        </activity>
+
+
+        <!-- VIEW -->
+        <activity
+            android:name=".view.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".view.LabPActivity"
+            android:label="@string/title_activity_lab"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".view.GradesActivity"
+            android:label="@string/title_activity_grades"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".view.InformationActivity"
+            android:label="@string/title_activity_information"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".view.SelectedGradesActivity"
+            android:label="@string/title_activity_selected_grades"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".view.LabSActivity"
+            android:label="@string/title_activity_lap_s"
+            android:screenOrientation="portrait">
+        </activity>
+
+
+        <!-- Model -->
+        <activity
+            android:name=".model.SelectedItem"
+            android:label="@string/title_activity_selected_item"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".model.Alert"
+            android:label="@string/title_alert"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".model.GetItemActivity"
+            android:label="@string/title_activity_get_item"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".model.PostItemActivity"
@@ -159,6 +162,22 @@
             android:label="@string/title_activity_delete_alert"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".model.EnrollStudentActivity"
+            android:label="@string/title_activity_enroll_student"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".model.RegisterATTN"
+            android:label="@string/title_activity_ATTN"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".model.SubmitATTN"
+            android:label="@string/title_activity_ATTN"
+            android:screenOrientation="portrait" >
+        </activity>
+
     </application>
 
 </manifest>

@@ -1,36 +1,50 @@
 package com.example.teacherspet.model;
 
-import java.util.ArrayList;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.teacherspet.control.HomeActivity;
+import com.example.teacherspet.control.AlertsActivity;
 
-public class DeleteAlertActivity extends Activity{
+/**
+ * Delete alerts from the database.
+ */
+public class DeleteAlertActivity extends BasicActivity {
 	//Web page to connect to
-    private static String url_delete_alert = "https://morning-castle-9006.herokuapp.com/delete_sAlert.php";
-    //Id for intent
-  	private static int REQUEST_CODE = 0;
-	ArrayList<String> viewIDs;
+    private static String url_delete_alert = "https://morning-castle-9006.herokuapp.com/delete_alert.php";
+    //Id of alert
+	String aid;
     //Data to pass to web page
-  	String[] itemNames;
-  	//Data collecting from web page
-  	String[] itemValues;
-	
+    String [] itemNames;
+    String [] itemValues;
+
+    /**
+     * Store alerts that need to be deleted and searched database for those alerts.
+     *
+     * @param savedInstanceState Most recently supplied data.
+     */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Intent intent = getIntent();
-		viewIDs = intent.getStringArrayListExtra("viewIDs");
+		aid = intent.getStringExtra("aid");
+        Log.d("AID:",aid);
 		startSearch();
 	}
+
+    /**
+     * Gathers data needed in order to delete alerts and sends to database.
+     */
+    private void startSearch(){
+        String[] itemNames = new String[]{"aid"};
+        String [] itemValues = new String[]{aid};
+
+        sendData("", itemNames, itemValues, url_delete_alert, this, false);
+    }
 	
 	/**
-	 * Receives data from model that was received from the database.
+	 * Checks to see if the alerts were deleted successfully.
 	 * 
 	 * @param requestCode Number that was assigned to the intent being called.
 	 * @param resultCode RESULT_OK if successful, RESULT_CANCELED if failed
@@ -43,46 +57,14 @@ public class DeleteAlertActivity extends Activity{
 	    if (requestCode == 0) {
 	    	//Tells if items where added or not. 1 mean successful
 	    	int success = data.getIntExtra("success", -1);
-	    	Log.d("Alert Success", "" + success);
+	    	//Log.d("Alert Success", "" + success);
 	    	if(success == 0){
-	    		Toast.makeText(getApplicationContext(), "Alert submitted", Toast.LENGTH_SHORT).show();
+	    		Toast.makeText(getApplicationContext(), "Alert(s) Deleted", Toast.LENGTH_SHORT).show();
+                super.start(this, AlertsActivity.class, true);
 	    	}else {
-	    		Toast.makeText(getApplicationContext(), "No Alert deleted", Toast.LENGTH_SHORT).show();
+	    		Toast.makeText(getApplicationContext(), "No Alert(s) Deleted", Toast.LENGTH_SHORT).show();
 	    	}
 	    }
-	    Intent i = new Intent(DeleteAlertActivity.this, HomeActivity.class);
-	    startActivity(i);
-	    finish();
-	}
-	
-	/**
-	 * Gives all data to models to find in database.
-	 */
-	private void startSearch(){
-		itemNames = new String[viewIDs.size() + 1];
-		itemValues = new String[viewIDs.size() + 1];
-		loadValues();
-				
-		Intent i = new Intent(DeleteAlertActivity.this, PostItemActivity.class);
-		i.putExtra("itemNames", itemNames);
-		i.putExtra("itemValues", itemValues);
-		i.putExtra("url", url_delete_alert);
-		//starts a activity but knows it will be returning something
-		Log.d("STARTING SEARCH", "ITEMS SENT");
-		startActivityForResult(i, REQUEST_CODE);
-	}
-	
-	/**
-	 * Fill out values with what user entered.
-	 */
-	private void loadValues(){
-		//Set user's id
-		itemNames[0] = "count";
-		itemValues[0] = Integer.toString(viewIDs.size());
-		//Set up all names and values
-		for(int j = 1; j < itemNames.length; j++){
-            itemNames[j] = "pid" + (j);
-			itemValues[j] = viewIDs.get((j - 1));
-		}
+        super.start(this, AlertsActivity.class, true);
 	}
 }
