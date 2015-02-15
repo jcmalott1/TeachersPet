@@ -5,7 +5,7 @@
     
     <!-- List Assignments -->
     <ListView
-        android:id="@android:id/list"
+        android:id="@+id/assignments"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
 

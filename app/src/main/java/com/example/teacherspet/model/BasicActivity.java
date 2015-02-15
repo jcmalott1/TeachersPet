@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
@@ -261,6 +262,42 @@ public class BasicActivity extends Activity {
                 activity, alertList,
                 layout, dataNeeded, ids);
     }
+
+    /**
+     * Makes  an adapter to attached to Edit Text View.
+     *
+     * @param data Intent being returned
+     * @return Adapter being attached to View
+     */
+    protected ListAdapter makeAdapterArray(Intent data, String[] dataNeeded, Context activity,
+                                      int layout, int[] ids){
+
+        alertList = new ArrayList<HashMap<String, String>>();
+        String[] item = data.getStringArrayExtra("item0");
+        //Take off brackets of string array from database
+        String assigS = item[0].replaceAll("\\{|\\}","");
+
+        String[] aNames = assigS.split(",");
+        int count = aNames.length;
+        Log.d("ANAMES: ", "" + aNames[0]);
+
+        for(int j = 0; j < count; j++){
+            // creating new HashMap
+            HashMap<String, String> map = new HashMap<String, String>();
+            map.put("assignmentNames", aNames[j]);
+            alertList.add(map);
+            //Log.d("NAME: ", dataNeeded[i]);
+            //Log.d("VALUE: ",items[i]);
+        }
+        String[] assName = {"assignmentNames"};
+        /**
+         * Details of how the adapter will be laid out.
+         */
+        return new SimpleAdapter(
+                activity, alertList,
+                layout, assName, ids);
+    }
+
 
     /**
      * List that holds all data needed from the listview

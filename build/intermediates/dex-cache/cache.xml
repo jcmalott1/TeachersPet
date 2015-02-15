@@ -2,53 +2,53 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\JC\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\20.0.0\support-annotations-20.0.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa">
-        <dex dex="C:\Users\JC\AndroidstudioProjects\TeacherPet\app\build\intermediates\pre-dexed\debug\support-annotations-20.0.0-79ebeec91bb6e3f34bab9ca748687a1c482c9611.jar" />
-    </item>
-    <item
-        jar="C:\Users\JC\AndroidstudioProjects\TeacherPet\app\libs\additionnal.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="bd9e8dc422bb8c8405359947fe9f4282b49f57f4">
-        <dex dex="C:\Users\JC\AndroidstudioProjects\TeacherPet\app\build\intermediates\pre-dexed\debug\additionnal-0e09ba336e49cacd36d0741c260e0e19eaeb46f3.jar" />
-    </item>
-    <item
-        jar="C:\Users\JC\AndroidstudioProjects\TeacherPet\app\libs\mail.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="428e267abff0d10802ccde86b915da2c20471160">
-        <dex dex="C:\Users\JC\AndroidstudioProjects\TeacherPet\app\build\intermediates\pre-dexed\debug\mail-eb7680d94c2dcff28f2374900971b0c9ee284f79.jar" />
-    </item>
-    <item
-        jar="C:\Users\JC\AndroidstudioProjects\TeacherPet\app\libs\activation.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="d1257cbff6faa44c1f325ae0d9413522d4644383">
-        <dex dex="C:\Users\JC\AndroidstudioProjects\TeacherPet\app\build\intermediates\pre-dexed\debug\activation-f1aaa723fdea95cc3ec4aa9f5e7f17abde088b87.jar" />
-    </item>
-    <item
-        jar="C:\Users\JC\AndroidstudioProjects\TeacherPet\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="8694693636ab36910c8100ce527c258ff3ebece0">
-        <dex dex="C:\Users\JC\AndroidstudioProjects\TeacherPet\app\build\intermediates\pre-dexed\debug\classes-1a572cdd02bdff882f6ecf3cb24410630c31f245.jar" />
-    </item>
-    <item
-        jar="C:\Users\JC\AndroidstudioProjects\TeacherPet\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\libs\internal_impl-20.0.0.jar"
+        jar="C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\libs\internal_impl-20.0.0.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d">
-        <dex dex="C:\Users\JC\AndroidstudioProjects\TeacherPet\app\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-1c1ad9792889c789b27182aa2cf507cfbfb22ac2.jar" />
+        <dex dex="C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-b20507c0f5ee4c5f5e006b6d289f0084ebb93365.jar" />
     </item>
     <item
-        jar="C:\Users\JC\AndroidstudioProjects\TeacherPet\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\20.0.0\classes.jar"
+        jar="C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\libs\additionnal.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="bd9e8dc422bb8c8405359947fe9f4282b49f57f4">
+        <dex dex="C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\build\intermediates\pre-dexed\debug\additionnal-4d266afd96a661e461245cfa06ee7933b9628a38.jar" />
+    </item>
+    <item
+        jar="C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\libs\mail.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="428e267abff0d10802ccde86b915da2c20471160">
+        <dex dex="C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\build\intermediates\pre-dexed\debug\mail-e7421a1402c3aea731e61bc59d20f7e705fa2903.jar" />
+    </item>
+    <item
+        jar="C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\libs\activation.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d1257cbff6faa44c1f325ae0d9413522d4644383">
+        <dex dex="C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\build\intermediates\pre-dexed\debug\activation-810c62083e3aa51771c25666b13f6ac4a02a4905.jar" />
+    </item>
+    <item
+        jar="C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0">
+        <dex dex="C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\build\intermediates\pre-dexed\debug\classes-88d7d80627d7a1f6476ffeae7e43bd1813256199.jar" />
+    </item>
+    <item
+        jar="C:\Users\Kevin\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\20.0.0\support-annotations-20.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa">
+        <dex dex="C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\build\intermediates\pre-dexed\debug\support-annotations-20.0.0-10b86b1e375e72d36b5294360fd57eb8bd8e9d5f.jar" />
+    </item>
+    <item
+        jar="C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\20.0.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef">
-        <dex dex="C:\Users\JC\AndroidstudioProjects\TeacherPet\app\build\intermediates\pre-dexed\debug\classes-09192d86461f203690e228f1e5e08bd509010c63.jar" />
+        <dex dex="C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\build\intermediates\pre-dexed\debug\classes-6dca1a8e3baccdf171913e9e5090056c70f02fe3.jar" />
     </item>
 
 </items>
