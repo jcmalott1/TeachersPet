@@ -169,23 +169,23 @@ ADDED from AndroidManifest.xml:92:9
 		ADDED from AndroidManifest.xml:94:13
 	android:name
 		ADDED from AndroidManifest.xml:93:13
-activity#com.example.teacherspet.view.SettingsActivity
-ADDED from AndroidManifest.xml:99:9
+activity#com.example.teacherspet.control.GradesPActivity
+ADDED from AndroidManifest.xml:97:9
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:102:13
-	android:label
-		ADDED from AndroidManifest.xml:101:13
-	android:name
 		ADDED from AndroidManifest.xml:100:13
-activity#com.example.teacherspet.view.LabPActivity
-ADDED from AndroidManifest.xml:104:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:107:13
 	android:label
-		ADDED from AndroidManifest.xml:106:13
+		ADDED from AndroidManifest.xml:99:13
 	android:name
+		ADDED from AndroidManifest.xml:98:13
+activity#com.example.teacherspet.control.GradesSActivity
+ADDED from AndroidManifest.xml:102:9
+	android:screenOrientation
 		ADDED from AndroidManifest.xml:105:13
-activity#com.example.teacherspet.view.GradesActivity
+	android:label
+		ADDED from AndroidManifest.xml:104:13
+	android:name
+		ADDED from AndroidManifest.xml:103:13
+activity#com.example.teacherspet.view.SettingsActivity
 ADDED from AndroidManifest.xml:109:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:112:13
@@ -193,7 +193,7 @@ ADDED from AndroidManifest.xml:109:9
 		ADDED from AndroidManifest.xml:111:13
 	android:name
 		ADDED from AndroidManifest.xml:110:13
-activity#com.example.teacherspet.view.InformationActivity
+activity#com.example.teacherspet.view.LabPActivity
 ADDED from AndroidManifest.xml:114:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:117:13
@@ -201,7 +201,7 @@ ADDED from AndroidManifest.xml:114:9
 		ADDED from AndroidManifest.xml:116:13
 	android:name
 		ADDED from AndroidManifest.xml:115:13
-activity#com.example.teacherspet.view.SelectedGradesActivity
+activity#com.example.teacherspet.view.InformationActivity
 ADDED from AndroidManifest.xml:119:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:122:13
@@ -298,18 +298,36 @@ ADDED from AndroidManifest.xml:176:9
 	android:name
 		ADDED from AndroidManifest.xml:177:13
 activity#com.example.teacherspet.view.SplashScreenActivity
-ADDED from AndroidManifest.xml:182:5
+ADDED from AndroidManifest.xml:181:9
 	android:label
-		ADDED from AndroidManifest.xml:184:8
+		ADDED from AndroidManifest.xml:183:13
 	android:name
-		ADDED from AndroidManifest.xml:183:8
+		ADDED from AndroidManifest.xml:182:13
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:185:5
+ADDED from AndroidManifest.xml:184:13
 action#android.intent.action.MAIN
-ADDED from AndroidManifest.xml:186:9
+ADDED from AndroidManifest.xml:185:17
 	android:name
-		ADDED from AndroidManifest.xml:186:17
+		ADDED from AndroidManifest.xml:185:25
 category#android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:188:9
+ADDED from AndroidManifest.xml:187:17
 	android:name
-		ADDED from AndroidManifest.xml:188:19
+		ADDED from AndroidManifest.xml:187:27
+activity#com.example.teacherspet.view.ShowDetailActivity
+ADDED from AndroidManifest.xml:190:9
+	android:label
+		ADDED from AndroidManifest.xml:192:13
+	android:name
+		ADDED from AndroidManifest.xml:191:13
+activity#com.example.teacherspet.view.ShowGradesActivity
+ADDED from AndroidManifest.xml:194:9
+	android:label
+		ADDED from AndroidManifest.xml:196:13
+	android:name
+		ADDED from AndroidManifest.xml:195:13
+activity#com.example.teacherspet.control.AddAssignmentActivity
+ADDED from AndroidManifest.xml:198:9
+	android:label
+		ADDED from AndroidManifest.xml:200:13
+	android:name
+		ADDED from AndroidManifest.xml:199:13

@@ -6,8 +6,14 @@
     <!-- List Assignments -->
     <ListView
         android:id="@+id/assignments"
+        android:paddingBottom="50dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
 
+    <Button
+        android:id="@+id/bnt_assignment"
+        style="@style/PlusButton"
+        android:visibility="gone"/>
+
 </RelativeLayout>
-<!-- From: file:/C:/Users/Kevin/AndroidStudioProjects/TeacherPet/TeachersPet/app/src/main/res/layout/activity_19_assignments.xml -->
+<!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/src/main/res/layout/activity_19_assignments.xml -->

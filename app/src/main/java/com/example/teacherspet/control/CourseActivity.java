@@ -7,11 +7,9 @@ import android.view.View;
 
 import com.example.teacherspet.R;
 import com.example.teacherspet.model.BasicActivity;
-import com.example.teacherspet.view.GradesActivity;
 import com.example.teacherspet.view.InformationActivity;
 import com.example.teacherspet.view.LabPActivity;
 import com.example.teacherspet.view.LabSActivity;
-import com.example.teacherspet.view.SelectedGradesActivity;
 
 /**
  * Back end for user interaction for Course Screen
@@ -70,10 +68,12 @@ public class CourseActivity extends BasicActivity {
 		    	break;*/
 		    case R.id.btn_grades:
 		    	//Screen is different depending if user is student or professor
-		    	if(typeP)
-		    	    toScreen = SelectedGradesActivity.class;
+		    	if(typeP) {
+                    Log.d("GRADES: ", "SENDING");
+                    toScreen = GradesPActivity.class;
+                }
 		    	else
-		    		toScreen = GradesActivity.class;
+		    		toScreen = GradesSActivity.class;
 		    	break;
 		    case R.id.btn_lab:
 		    	//Screen is different depending if user is student or professor

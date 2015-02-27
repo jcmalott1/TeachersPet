@@ -94,6 +94,16 @@
             android:label="@string/title_activity_attendance"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.example.teacherspet.control.GradesPActivity"
+            android:label="@string/title_activity_grades"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.control.GradesSActivity"
+            android:label="@string/title_activity_grades"
+            android:screenOrientation="portrait" >
+        </activity>
 
         <!-- VIEW -->
         <activity
@@ -107,18 +117,8 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.example.teacherspet.view.GradesActivity"
-            android:label="@string/title_activity_grades"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
             android:name="com.example.teacherspet.view.InformationActivity"
             android:label="@string/title_activity_information"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.example.teacherspet.view.SelectedGradesActivity"
-            android:label="@string/title_activity_selected_grades"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -186,6 +186,18 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.view.ShowDetailActivity"
+            android:label="@string/title_activity_show_detail" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.view.ShowGradesActivity"
+            android:label="@string/title_activity_show_grades" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.control.AddAssignmentActivity"
+            android:label="@string/title_activity_add_assignment" >
         </activity>
     </application>
 

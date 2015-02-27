@@ -1,42 +1,31 @@
 package com.example.teacherspet.control;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ListAdapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.teacherspet.R;
-import com.example.teacherspet.model.GetItemActivity;
-import com.example.teacherspet.model.SelectedItem;
+import com.example.teacherspet.model.BasicActivity;
+import com.example.teacherspet.view.ShowDetailActivity;
 
 /**
- * Back end for user interaction for Students Screen.
- *  
+ * Displays all students in the class to the screen.
+ *
  * @author Johnathon Malott, Kevin James
- * @version 10/7/2014 
+ * @version 2/26/2014
  */
-public class StudentsActivity extends ListActivity {
-	//Key values pair for user info
-	ArrayList<HashMap<String, String>> userList;
-	//Web page to get JSON information about users
-	private static final String url_list_users = "https://morning-castle-9006.herokuapp.com/list_users.php";
-	//Id so intent knows who is calling it
-    private static int REQUEST_CODE = 0;
-    //Data to pass to website
-  	String[] dataPassed;
-  	//Data collected from web page
-  	String[] dataNeeded;
+public class StudentsActivity extends BasicActivity implements AdapterView.OnItemClickListener{
+    //Data collecting from web page
+    String[] dataNeeded;
+    //Web page to connect to
+    private static String url_find_users = "https://morning-castle-9006.herokuapp.com/find_users.php";
 
 	/**
-	 * When screen is created set students layout.
-	 * Add List View to Screen.
+	 * Set layout to students activity then start search for student
+     * information.
 	 * 
 	 * @param savedInstanceState Most recently supplied data.
 	 * @Override
@@ -47,90 +36,70 @@ public class StudentsActivity extends ListActivity {
 		setContentView(R.layout.activity_15_students);
 		startSearch();
 	}
-	
-	/**
-	 * When view is pressed get title of that view and passed that on to the
-	 * next screen.
-	 * 
-	 * @param l ListView where clicked happen.
-	 * @param view The view that was clicked. 
-	 * @param position Location of view in the list.
-	 * @param id Row is of item clicked.
-	 * @Override
-	 */
-	@Override
-	public void onListItemClick(ListView l, View view, int position,
-			long id) {
-		//Action to change screens
-	    Intent i = new Intent(this,SelectedItem.class);
-	    //Title of view clicked
-	    String text = (String) ((TextView) view).getText();
-	   	
-	    //Stored data to be passed to next screen
-	   	i.putExtra("text", text);
-	  	this.startActivity(i);	
-	}
-	
-	/**
-	 * Receives data from model that was received from the database.
-	 * Takes this info and places on screen.
-	 * 
-	 * @param requestCode Number that was assigned to the intent being called.
-	 * @param resultCode RESULT_OK if successful, RESULT_CANCELED if failed
-	 * @param data Intent that was just exited.
-	 */
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode,
-	         Intent data) {
-		//Check request that this is response to
-	    if (requestCode == 0) {
-	    	 userList = new ArrayList<HashMap<String, String>>();
-	    	//Number of users sent back
-	    	int count = Integer.parseInt(data.getStringExtra("count"));
-	    	 for(int i = 0; i < count; i++){
-	    		//A single user
-	    		 String[] item = data.getStringArrayExtra("item" + i);
-	    		 HashMap<String, String> map = new HashMap<String, String>();
-	    		 for(int j = 0; j < dataNeeded.length; j++){
-		    		// adding each child node to HashMap key => value
-		             map.put(dataNeeded[j], item[j]);
-	    		 }
-	    		 //add row to list
-	    		 userList.add(map);
-	    	 }
-	    	 
-	    	ListAdapter adapter = new SimpleAdapter(
-					StudentsActivity.this, userList,
-					R.layout.student_list, dataNeeded, new int[]{
-							R.id.uid,
-							R.id.name, 
-							R.id.accountnumber,
-                		    R.id.college, 
-                		    R.id.email, 
-                		    R.id.password, 
-                		    R.id.accounttype
-					});
-			setListAdapter(adapter);
-	    }
-	    else{
-	    	//if no students are in class exit
-	    	finish();
-	    }
-	}
-	
-	/**
-	 * Sets up data to be passed to model for a database search.
-	 *
-	 */
-	private void startSearch(){
-		String tag = "users";
-		dataPassed = new String[]{};
-		dataNeeded = new String[]{"id","name","accountnumber","college","email","password", "accounttype"};
-		Intent i = new Intent(StudentsActivity.this, GetItemActivity.class);
-		i.putExtra("dataPassed", dataPassed);
-		i.putExtra("dataNeeded", dataNeeded);
-		i.putExtra("JSONTag", tag);
-		i.putExtra("url", url_list_users);
-		startActivityForResult(i, REQUEST_CODE);
-	}
+
+    /**
+     * Sets up and send material needed to get data from database.
+     *
+     */
+    private void startSearch(){
+        String tag = "users";
+        String[] dataPassed = new String[]{"cid", super.getCourseID()};
+        dataNeeded = new String[]{"name","email","type"};
+
+        sendData(tag, dataPassed, dataNeeded, url_find_users, this, true);
+    }
+
+    /**
+     * List all users in the class to the screen.
+     *
+     * @param requestCode Number that was assigned to the intent being called.
+     * @param resultCode RESULT_OK if successful, RESULT_CANCELED if failed
+     * @param data Intent that was just exited.
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent data) {
+        //Check request that this is response to
+        if (requestCode == 0) {
+            int success = data.getIntExtra("success",-1);
+            if(success == 0){
+                ListView showUsers = (ListView) findViewById(R.id.users);
+
+                int layout = R.layout.list_grade;
+                int[] ids = new int[] {R.id.name,R.id.extra,R.id.extra2};
+                showUsers.setAdapter(super.makeAdapter(data, dataNeeded, this, layout, ids));
+                showUsers.setOnItemClickListener(this);
+            } else {
+                //Do nothing, user will see no alerts in his box.
+                Toast.makeText(this, "No users!!", Toast.LENGTH_SHORT);
+            }
+        }
+    }
+
+    /**
+     * When user is selected display that user information on different screen.
+     *
+     * @param parent Where clicked happen.
+     * @param view View that was clicked
+     * @param position Position of view in list.
+     * @param id Row id of item clicked.
+     */
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position,
+                            long id) {
+        String details = "Email: %Account: ";
+        //Check if there account type is Student of Professor
+        String type = "Professor";
+        if(super.getNameorExtra(position, "type").equals("s")){
+            type = "Student";
+        }
+
+        //Data has to be split by a % to be parsed
+        String extra = super.getNameorExtra(position, "email") +"%"+ type;
+        Intent i = new Intent(this, ShowDetailActivity.class);
+        i.putExtra("Name" , super.getNameorExtra(position, "name"));
+        i.putExtra("Extra" , extra);
+        i.putExtra("Details" , details);
+        startActivity(i);
+    }
 }

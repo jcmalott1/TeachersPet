@@ -6,9 +6,9 @@
 
     <!-- List to Display Students -->
     <ListView
-        android:id="@android:id/list"
+        android:id="@+id/users"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
 
 </LinearLayout>
-<!-- From: file:/C:/Users/Kevin/AndroidStudioProjects/TeacherPet/TeachersPet/app/src/main/res/layout/activity_15_students.xml -->
+<!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/src/main/res/layout/activity_15_students.xml -->

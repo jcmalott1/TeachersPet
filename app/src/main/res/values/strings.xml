@@ -31,6 +31,13 @@
     <!-- Student Version -->
     <string name="lbl_course_heading">Profeesor/Course/Section/Term/Time</string>
 
+    <!-- *******************************ASSIGNMENTS*************************************** -->
+    <string name="lbl_gName">Name of Assignment</string>
+    <string name="lbl_date_due">Date Assignment Due</string>
+    <string name="lbl_date_assigned">Date Assignment Assigned</string>
+    <string name="lbl_assignment_total">Total For Grade</string>
+    <string name="lbl_descript">Description of Assignment</string>
+
     <!-- *******************************ALERTS****************************************** -->
     <string name="lbl_teacher">Teacher</string>
     <string name="lbl_semester">Semester</string>
@@ -93,8 +100,8 @@
     <string name="title_activity_students">StudentsActivity</string>
 
     <!-- *******************************LOGIN****************************************** -->
-    <string name="student_login">john</string>
-    <string name="student_login2">Boats</string>
+    <string name="student_login">andrew scott</string>
+    <string name="student_login2">kippers</string>
 
     <string-array name="login_array">
         <item>student</item>
@@ -147,5 +154,8 @@
     <string name="title_activity_enroll_student">EnrollStudentActivity</string>
     <string name="title_activity_ATTN">Attendance</string>
     <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="title_activity_show_detail">ShowDetailActivity</string>
+    <string name="title_activity_show_grades">ShowGradesActivity</string>
+    <string name="title_activity_add_assignment">AddAssignmentActivity</string>
 
 </resources>

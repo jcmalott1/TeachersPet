@@ -94,6 +94,16 @@
             android:label="@string/title_activity_attendance"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".control.GradesPActivity"
+            android:label="@string/title_activity_grades"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".control.GradesSActivity"
+            android:label="@string/title_activity_grades"
+            android:screenOrientation="portrait" >
+        </activity>
 
         <!-- VIEW -->
         <activity
@@ -107,18 +117,8 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".view.GradesActivity"
-            android:label="@string/title_activity_grades"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
             android:name=".view.InformationActivity"
             android:label="@string/title_activity_information"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".view.SelectedGradesActivity"
-            android:label="@string/title_activity_selected_grades"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -178,16 +178,27 @@
             android:label="@string/title_activity_ATTN"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".view.SplashScreenActivity"
+            android:label="@string/title_activity_splash_screen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-    <activity
-       android:name=".view.SplashScreenActivity"
-       android:label="@string/title_activity_splash_screen" >
-    <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-
-        <category android:name="android.intent.category.LAUNCHER" />
-    </intent-filter>
-</activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".view.ShowDetailActivity"
+            android:label="@string/title_activity_show_detail" >
+        </activity>
+        <activity
+            android:name=".view.ShowGradesActivity"
+            android:label="@string/title_activity_show_grades" >
+        </activity>
+        <activity
+            android:name=".control.AddAssignmentActivity"
+            android:label="@string/title_activity_add_assignment" >
+        </activity>
     </application>
 
 </manifest>

@@ -37,6 +37,14 @@
     <style name="CenterVButton" parent="@style/ActionButton">
         <item name="android:layout_centerInParent">true</item>
     </style>
+
+    <!-- Button Centered Vertically on Screen with Action-->
+    <style name="PlusButton" parent="@style/CenterVButton">
+        <item name="android:drawableStart">@drawable/ic_add</item>
+        <item name="android:drawableLeft">@drawable/ic_add</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+    </style>
     
     
     

@@ -249,8 +249,8 @@ public class BasicActivity extends Activity {
             HashMap<String, String> map = new HashMap<String, String>();
             for(int i = 0; i < dataNeeded.length; i++){
                 map.put(dataNeeded[i], items[i]);
-                //Log.d("NAME: ", dataNeeded[i]);
-                //Log.d("VALUE: ",items[i]);
+                Log.d("NAME: ", dataNeeded[i]);
+                Log.d("VALUE: ",items[i]);
             }
             alertList.add(map);
         }
@@ -264,38 +264,92 @@ public class BasicActivity extends Activity {
     }
 
     /**
-     * Makes  an adapter to attached to Edit Text View.
+     * Makes  an adapter to a list view.
      *
      * @param data Intent being returned
      * @return Adapter being attached to View
      */
-    protected ListAdapter makeAdapterArray(Intent data, String[] dataNeeded, Context activity,
+    protected ListAdapter makeAdapterArray(Intent data, Boolean passE, Context activity,
                                       int layout, int[] ids){
 
         alertList = new ArrayList<HashMap<String, String>>();
+        String[] extras = null;
+        //Key values for the mapping
+        String[] keyNames = {"name"};
         String[] item = data.getStringArrayExtra("item0");
-        //Take off brackets of string array from database
-        String assigS = item[0].replaceAll("\\{|\\}","");
+        //Take off brackets of string array from database, what is to be displayed in list view.
+        String[] names = arrayParser(item[0]);
+        int count = names.length;
+        Log.d("NAME: ", "" + count);
 
-        String[] aNames = assigS.split(",");
-        int count = aNames.length;
-        Log.d("ANAMES: ", "" + aNames[0]);
+        if(passE) {
+            //All  other data passed besides name
+            extras = getExtraInfo(item, count);
+            //Log.d("ANAMES: ", "" + names[0]);
+            keyNames = new String[]{"name","extra"};
+        }
 
-        for(int j = 0; j < count; j++){
+        for(int i = 0; i < count; i++){
             // creating new HashMap
             HashMap<String, String> map = new HashMap<String, String>();
-            map.put("assignmentNames", aNames[j]);
+            map.put("name", names[i]);
+            Log.d("NAME: ", names[i]);
+            if(passE) {
+                map.put("extra", extras[i]);
+                Log.d("Extra: ", extras[i]);
+            }
             alertList.add(map);
-            //Log.d("NAME: ", dataNeeded[i]);
-            //Log.d("VALUE: ",items[i]);
+            //Log.d("Extra: ", extras[i]);
         }
-        String[] assName = {"assignmentNames"};
         /**
          * Details of how the adapter will be laid out.
          */
         return new SimpleAdapter(
                 activity, alertList,
-                layout, assName, ids);
+                layout, keyNames, ids);
+    }
+
+
+    /**
+     * Takes all the assignment data and groups the data together by each assignment.
+     *
+     * @param item Holds all assignment data for student.
+     * @param colLength Length that each array is going to be.
+     * @return All assignments grouped by assignment.
+     */
+    private String[] getExtraInfo(String[] item, int colLength){
+        String[][] data = new String[item.length][colLength];
+        //Log.d("ColLength: ", "" + colLength);
+        //Log.d("ItemLength: ", "" + item.length);
+        String[] extras  = new String[item.length];
+        String dataString = "";
+
+        //getting all the data back except grade names
+        for(int i = 0; i < item.length - 1; i++) {
+            data[i] = arrayParser(item[i+1]);
+        }
+
+        //Store all data for 1 assignment together
+        for(int i = 0; i < colLength; i++) {
+            for(int j = 0; j < (item.length - 1); j++) {
+                dataString += data[j][i] + "%";
+            }
+            Log.d("Data: ", dataString);
+            extras[i] = dataString;
+            dataString = "";
+        }
+
+        return extras;
+    }
+
+    /**
+     * Takes array from database and turns into string array in java.
+     * @param item Array String from databse
+     * @return Array String in java
+     */
+    protected String[] arrayParser(String item){
+       return item.replaceAll("\\{|\\}|\\[|\\]|(\\d+\":)|\"", "").split(",");
+        //return item2.replaceAll("\"", "").split(",");
     }
 
 
@@ -306,6 +360,16 @@ public class BasicActivity extends Activity {
      */
     private ArrayList<HashMap<String, String>>  getList(){
         return alertList;
+    }
+
+    /**
+     * Gets the name for an item or that extras along with it
+     * @param position Location in the view.
+     * @param key Value that user is trying to reach.
+     * @return
+     */
+    protected String getNameorExtra(int position, String key){
+        return getList().get(position).get(key);
     }
 
 //********************************** ADAPTER END ****************************************************
