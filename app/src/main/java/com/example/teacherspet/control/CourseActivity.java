@@ -69,7 +69,7 @@ public class CourseActivity extends BasicActivity {
 		    case R.id.btn_grades:
 		    	//Screen is different depending if user is student or professor
 		    	if(typeP) {
-                    Log.d("GRADES: ", "SENDING");
+                    //Log.d("GRADES: ", "SENDING");
                     toScreen = GradesPActivity.class;
                 }
 		    	else

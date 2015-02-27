@@ -1,21 +1,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/BasicLayout"
-    tools:context="com.example.teacherspet.view.InformationActivity" >
+    tools:context="com.example.teacherspet.control.AssignmentsActivity" >
 
-    <!-- File to be view, is set by what user clicks on -->
-    <ImageView
-        android:id="@+id/displayInfo"
-        android:layout_width="fill_parent" 
-        android:layout_height="fill_parent"
-        android:contentDescription="@string/image_descript"/>
-    
-    <!-- List information options -->
+    <!-- List Assignments -->
     <ListView
-        android:id="@android:id/list"
+        android:id="@+id/extra"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
-    </ListView>
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>
 <!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/src/main/res/layout/activity_14_information.xml -->

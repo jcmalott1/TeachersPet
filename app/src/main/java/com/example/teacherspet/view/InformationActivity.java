@@ -1,29 +1,32 @@
 package com.example.teacherspet.view;
 
-import android.app.ListActivity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.teacherspet.R;
-import com.example.teacherspet.model.PetAdapter;
+import com.example.teacherspet.model.BasicActivity;
 
 /**
- * User interaction for Information Screen.
+ * Find all extra information for the course.
  *  
  * @author Johnathon Malott, Kevin James
- * @version 10/7/2014 
+ * @version 2/27/2015
  */
-public class InformationActivity extends ListActivity {
-	//Stored class room information
-	private String[] info;
-	//Store ListView to be displayed
-	private PetAdapter infoAdapter;
+public class InformationActivity extends BasicActivity implements AdapterView.OnItemClickListener{
+    //Data collecting from web page
+    String[] dataNeeded;
+    //Web page to connect to
+    private static String url_find_extra = "https://morning-castle-9006.herokuapp.com/find_extra.php";
 
 	/**
 	 * When screen is created set to information layout.
+     * Then start search for extra information.
 	 * 
 	 * @param savedInstanceState Most recently supplied data.
 	 * @Override
@@ -32,39 +35,66 @@ public class InformationActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_14_information);
-		info = new String[]{"Course Outline", "Syllabus"};
-		
-		//infoAdapter = new PetAdapter(this, info);
-		//setListAdapter(infoAdapter);
+
+        startSearch();
 	}
-	
-	/**
-	 * When view is pressed get file and display it.
-	 * 
-	 * @param l ListView where clicked happen.
-	 * @param view The view that was clicked. 
-	 * @param position Location of view in the list.
-	 * @param id Row is of item clicked.
-	 * @Override
-	 */
-	@Override
-	public void onListItemClick(ListView l, View view, int position, 
-			long id) {
-		//Title of view that was pressed
-	    String text = (String) ((TextView) view).getText();
-	    //Where to display image
-	    ImageView myImageView = (ImageView)findViewById(R.id.displayInfo);
-	      	
-	   	switch(text){
-	    case "Course Outline":
-	      	myImageView.setImageResource(R.drawable.course_outline);
-	        break;
-	    case "Syllabus":
-	      	myImageView.setImageResource(R.drawable.syllabus);
-	      	break;
-	    default: 
-	      	}
-	   	//Get rid of ListView on current screen
-	   	setListAdapter(null);
+
+    /**
+     * Send data to database to get back extra names and address.
+     */
+    private void startSearch(){
+        //Name of JSON tag storing data
+        String tag = "extras";
+        //Log.d("CourseID: ", super.getCourseID());
+        String[] dataPassed = new String[]{"cid", super.getCourseID()};
+        dataNeeded = new String[]{"name","address"};
+
+        sendData(tag, dataPassed, dataNeeded, url_find_extra, this, true);
+    }
+
+    /**
+     * List all extras in the course to the screen.
+     *
+     * @param requestCode Number that was assigned to the intent being called.
+     * @param resultCode RESULT_OK if successful, RESULT_CANCELED if failed
+     * @param data Intent that was just exited.
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent data) {
+        //Check request that this is response to
+        if (requestCode == 0) {
+            int success = data.getIntExtra("success",-1);
+            if(success == 0){
+                ListView attendance = (ListView) findViewById(R.id.extra);
+
+                int layout = R.layout.list_grade;
+                int[] ids = new int[] {R.id.name,R.id.extra};
+                attendance.setAdapter(super.makeAdapterArray(data, true, this, layout, ids));
+                attendance.setOnItemClickListener(this);
+            } else {
+                //Do nothing, user will see no alerts in his box.
+                Toast.makeText(this, "No extras!!", Toast.LENGTH_SHORT);
+            }
+        }
+    }
+
+    /**
+     * When extra is selected send to web page.
+     *
+     * @param parent Where clicked happen.
+     * @param view View that was clicked
+     * @param position Position of view in list.
+     * @param id Row id of item clicked.
+     */
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position,
+                            long id) {
+        String url = "http://" + super.getNameorExtra(position, "extra").replaceAll("%", "");
+        Log.d("URL", url);
+
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
 }
