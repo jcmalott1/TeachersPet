@@ -249,8 +249,8 @@ public class BasicActivity extends Activity {
             HashMap<String, String> map = new HashMap<String, String>();
             for(int i = 0; i < dataNeeded.length; i++){
                 map.put(dataNeeded[i], items[i]);
-                Log.d("NAME: ", dataNeeded[i]);
-                Log.d("VALUE: ",items[i]);
+                //Log.d("NAME: ", dataNeeded[i]);
+                //Log.d("VALUE: ",items[i]);
             }
             alertList.add(map);
         }

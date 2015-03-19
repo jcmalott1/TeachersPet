@@ -51,7 +51,7 @@ public class AssignmentsActivity extends BasicActivity implements AdapterView.On
         //Name of JSON tag storing data
         String tag = "assignments";
         String[] dataPassed = new String[]{"cid", super.getCourseID()};
-        dataNeeded = new String[]{"names", "dd", "da", "gradet", "dscript"};
+        dataNeeded = new String[]{"name", "dd", "da", "gradet", "dscript"};
 
         sendData(tag, dataPassed, dataNeeded, url_find_assignments, this, true);
     }

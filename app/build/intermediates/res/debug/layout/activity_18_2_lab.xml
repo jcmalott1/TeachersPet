@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.teacherspet.view.ShowDetailActivity">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:textSize="20dp"/>
+
+    <Button
+        android:id="@+id/bnt_pdf"
+        style="@style/ActionButton"
+        android:visibility="gone"
+        android:text="@string/label_lab"
+        android:layout_alignParentBottom="true"/>
+
+    <Button
+        android:id="@+id/bnt_submit"
+        style="@style/ActionButton"
+        android:visibility="gone"
+        android:text="@string/lbl_submit"
+        android:layout_alignParentBottom="true"/>
+
+    <!-- Middle layout -->
+    <RelativeLayout
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:layout_marginBottom="40dp"
+        android:layout_below="@id/title">
+
+         <ListView
+             android:id="@+id/commentView"
+             android:layout_height="wrap_content"
+             android:layout_width="match_parent"
+             android:visibility="gone"/>
+
+        <ScrollView
+            android:id="@+id/addScroll"
+            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:visibility="gone">
+            <RelativeLayout
+                android:layout_height="fill_parent"
+                android:layout_width="fill_parent">
+                <EditText
+                    android:id="@+id/student"
+                    style="@style/BasicEditText"
+                    android:hint="@string/lab_student"/>
+
+                <EditText
+                    android:id="@+id/cName"
+                    style="@style/BasicEditText"
+                    android:layout_below="@id/student"
+                    android:hint="@string/lbl_cName"/>
+
+                <EditText
+                    android:id="@+id/cDescript"
+                    style="@style/BasicEditText"
+                    android:layout_height="fill_parent"
+                    android:layout_below="@id/cName"
+                    android:hint="@string/lab_comment"/>
+            </RelativeLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+
+</RelativeLayout>
+<!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/src/main/res/layout/activity_18_2_lab.xml -->

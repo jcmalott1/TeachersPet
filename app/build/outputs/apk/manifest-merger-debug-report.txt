@@ -193,7 +193,7 @@ ADDED from AndroidManifest.xml:109:9
 		ADDED from AndroidManifest.xml:111:13
 	android:name
 		ADDED from AndroidManifest.xml:110:13
-activity#com.example.teacherspet.view.LabPActivity
+activity#com.example.teacherspet.view.LabActivity
 ADDED from AndroidManifest.xml:114:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:117:13
@@ -331,3 +331,23 @@ ADDED from AndroidManifest.xml:198:9
 		ADDED from AndroidManifest.xml:200:13
 	android:name
 		ADDED from AndroidManifest.xml:199:13
+activity#com.example.teacherspet.view.ShowLabActivity
+ADDED from AndroidManifest.xml:202:9
+	android:windowSoftInputMode
+		ADDED from AndroidManifest.xml:205:13
+	android:label
+		ADDED from AndroidManifest.xml:204:13
+	android:name
+		ADDED from AndroidManifest.xml:203:13
+activity#com.example.teacherspet.control.AddCommentActivity
+ADDED from AndroidManifest.xml:207:9
+	android:label
+		ADDED from AndroidManifest.xml:209:13
+	android:name
+		ADDED from AndroidManifest.xml:208:13
+activity#com.example.teacherspet.control.DayScheduleActivity
+ADDED from AndroidManifest.xml:211:9
+	android:label
+		ADDED from AndroidManifest.xml:213:13
+	android:name
+		ADDED from AndroidManifest.xml:212:13

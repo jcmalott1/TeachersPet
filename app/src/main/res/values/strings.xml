@@ -90,9 +90,11 @@
         <item>Nested Loop Lab</item>
     </string-array>
 
+    <string name="label_lab">Download Lab PDF</string>
     <string name="lab_comment">Enter Message Here!</string>
-    <string name="lab_name">Name of Lab</string>
+    <string name="lbl_cName">Name of Comment</string>
     <string name="lab_student">Students Name</string>
+
     <string name="title_activity_login_fail">LoginFailActivity</string>
     <string name="title_activity_lap_s">LapSActivity</string>
     <string name="title_activity_attendance">AttendanceActivity</string>
@@ -100,8 +102,8 @@
     <string name="title_activity_students">StudentsActivity</string>
 
     <!-- *******************************LOGIN****************************************** -->
-    <string name="student_login">andrew scott</string>
-    <string name="student_login2">kippers</string>
+    <string name="student_login">john</string>
+    <string name="student_login2">Boats</string>
 
     <string-array name="login_array">
         <item>student</item>
@@ -157,5 +159,12 @@
     <string name="title_activity_show_detail">ShowDetailActivity</string>
     <string name="title_activity_show_grades">ShowGradesActivity</string>
     <string name="title_activity_add_assignment">AddAssignmentActivity</string>
+    <string name="title_activity_add_lab">AddLabActivity</string>
+    <string name="title_activity_show_lab">ShowLabActivity</string>
+    <string name="title_activity_add_comment">AddCommentActivity</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_day_schedule">DayScheduleActivity</string>
 
 </resources>

@@ -1,16 +1,24 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/BasicLayout"
+    tools:context=".SelectedItem"
     android:orientation="vertical"
-    tools:context=".SelectedItem" >
+    android:weightSum="2">
         
-    <!-- Title -->
-	<TextView android:id="@+id/textView1" 
-	    style="@style/TitleText" />
-	
-	<!-- Date -->
-    <TextView
-        style="@style/BasicText"
-	    android:text="@string/date" />
+    <!-- Top half -->
+	<ListView
+        android:id="@+id/textView1"
+        android:layout_weight="1"
+	    android:layout_height="0dp"
+        android:layout_width="wrap_content"/>
+
+    <!-- Bottom Half -->
+    <fragment
+        android:layout_width="fill_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:name="com.example.teacherspet.model.TodayScheduleFragment"/>
+
 
 </LinearLayout>

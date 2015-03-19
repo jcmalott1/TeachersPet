@@ -112,7 +112,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.example.teacherspet.view.LabPActivity"
+            android:name="com.example.teacherspet.view.LabActivity"
             android:label="@string/title_activity_lab"
             android:screenOrientation="portrait" >
         </activity>
@@ -198,6 +198,19 @@
         <activity
             android:name="com.example.teacherspet.control.AddAssignmentActivity"
             android:label="@string/title_activity_add_assignment" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.view.ShowLabActivity"
+            android:label="@string/title_activity_show_lab"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.control.AddCommentActivity"
+            android:label="@string/title_activity_add_comment" >
+        </activity>
+        <activity
+            android:name="com.example.teacherspet.control.DayScheduleActivity"
+            android:label="@string/title_activity_day_schedule" >
         </activity>
     </application>
 
