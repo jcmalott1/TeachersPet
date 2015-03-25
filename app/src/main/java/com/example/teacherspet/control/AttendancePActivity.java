@@ -8,21 +8,20 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.teacherspet.R;
+import com.example.teacherspet.model.AppCSTR;
 import com.example.teacherspet.model.BasicActivity;
 import com.example.teacherspet.model.RegisterATTN;
 import com.example.teacherspet.model.SubmitATTN;
 
 /**
- * List all user that are registered for current class.
+ * List all users that are registered for current class.
  * 
  * @author Johnathon Malott, Kevin James
- * @version 10/7/2014 
+ * @version 3/24/2014
  */
 public class AttendancePActivity extends BasicActivity implements AdapterView.OnItemClickListener{
 	//Data collecting from web page
 	String[] dataNeeded;
-	//Web page to connect to
-	private static String url_find_students = "https://morning-castle-9006.herokuapp.com/find_students.php";
 
 	/**
 	 * Set layout to attendance and look for students.
@@ -38,7 +37,7 @@ public class AttendancePActivity extends BasicActivity implements AdapterView.On
 	}
 	
 	/**
-	 * Send data to database to get back students' name and id.
+	 * Send data to database to get all users name, id, today's status.
 	 */
 	private void startSearch(){
 		//Name of JSON tag storing data
@@ -47,11 +46,11 @@ public class AttendancePActivity extends BasicActivity implements AdapterView.On
 		String[] dataPassed = new String[]{"courseID", super.getCourseID(),"pid", super.getID()};
 		dataNeeded = new String[]{"studentName","studentID","status"};
 
-        sendData(tag, dataPassed, dataNeeded, url_find_students, this, true);
+        sendData(tag, dataPassed, dataNeeded, AppCSTR.URL_FIND_STUDENTS, this, true);
 	}
 	
 	/**
-	 * List all students in the class to the screen.
+	 * List all users in the class to the screen.
 	 * 
 	 * @param requestCode Number that was assigned to the intent being called.
 	 * @param resultCode RESULT_OK if successful, RESULT_CANCELED if failed
@@ -62,13 +61,12 @@ public class AttendancePActivity extends BasicActivity implements AdapterView.On
 	         Intent data) {
 		//Check request that this is response to
 	    if (requestCode == 0) {
-            int success = data.getIntExtra("success",-1);
+            int success = data.getIntExtra(AppCSTR.SUCCESS,-1);
             if(success == 0){
-                super.clearViewID();
                 ListView attendance = (ListView) findViewById(R.id.attnView);
 
                 int layout = R.layout.list_item;
-                int[] ids = new int[] {R.id.itemList};
+                int[] ids = new int[] {R.id.listItem};
                 attendance.setAdapter(super.makeAdapter(data, dataNeeded, this, layout, ids));
                 attendance.setOnItemClickListener(this);
             } else {
@@ -89,12 +87,12 @@ public class AttendancePActivity extends BasicActivity implements AdapterView.On
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,
                             long id) {
-        //Log.d("VIEW 2: ", "" + view.getId());
-        super.changeATTNColor(view, position, "studentID");
+        super.changeColor(view, position, "studentID", false);
     }
 
     /**
-     * Submit all the students that are present for that day.
+     * Register: stores students current status and takes off list.
+     * Submit: takes register then attendance for the day
      *
      * @param view Button that was clicked.
      */
@@ -104,6 +102,7 @@ public class AttendancePActivity extends BasicActivity implements AdapterView.On
         if(viewID == R.id.bnt_register){
             takeRegister(true);
         } else if(viewID == R.id.bnt_submit){
+            //Allow register to be taken before submit attendance
             Thread timer = new Thread() {
                 public void run(){
                     try {
@@ -127,8 +126,8 @@ public class AttendancePActivity extends BasicActivity implements AdapterView.On
      */
     private void takeRegister(Boolean finish){
         Intent i = new Intent(this, RegisterATTN.class);
-        i.putExtra("greenIDs", super.getViewID("green"));
-        i.putExtra("redIDs", super.getViewID("red"));
+        i.putExtra(AppCSTR.GREEN_IDS, super.getViewID(AppCSTR.GREEN_IDS));
+        i.putExtra(AppCSTR.RED_IDS, super.getViewID(AppCSTR.RED_IDS));
         startActivity(i);
         if(finish){
             finish();

@@ -7,23 +7,17 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.teacherspet.model.AppCSTR;
 import com.example.teacherspet.model.BasicActivity;
 import com.example.teacherspet.R;
 
 /**
- * Handles back end for user interaction when creating a New User.
+ * Creates a new user.
  *  
  * @author Johnathon Malott, Kevin James
- * @version 10/7/2014 
+ * @version 3/21/2014
  */
 public class NewUserActivity extends BasicActivity {
-	//URL to add user to database
-    private static final String url_create_user = "https://morning-castle-9006.herokuapp.com/create_user.php";
-    //Name of field in database
-    //String[] itemNames;
-    //Values to place into those fields
-    //String[] itemValues;
-    //Checks if student/professor account was checked
     String name, accountnumber, college, email, password;
     CheckBox student;
     CheckBox professor;
@@ -34,13 +28,9 @@ public class NewUserActivity extends BasicActivity {
 	 * @param savedInstanceState Most recently supplied data.
 	 * @Override
 	 */
-	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_3_new_user);
-			
-		student = (CheckBox) findViewById(R.id.checkS);
-	    professor = (CheckBox) findViewById(R.id.checkP);
 	}
 	
 	/**
@@ -49,6 +39,8 @@ public class NewUserActivity extends BasicActivity {
 	 * @param view View that was interacted with by user.
 	 */
 	public void onClicked(View view){
+        student = (CheckBox) findViewById(R.id.checkS);
+        professor = (CheckBox) findViewById(R.id.checkP);
 		//Action to hold screen change.
 		if(view.getId() == R.id.btn_submit){
 			if((student.isChecked() || professor.isChecked()) && isValidInput()){
@@ -64,7 +56,7 @@ public class NewUserActivity extends BasicActivity {
 		String [] itemNames = new String[]{"name","accountnumber","college","email","password","accounttype"};
 		String [] itemValues = getValues();
 
-        super.sendData("", itemNames, itemValues, url_create_user, this, false);
+        super.sendData("", itemNames, itemValues, AppCSTR.URL_CREATE_USER, this, false);
 	}
 	
 	/**
@@ -88,9 +80,6 @@ public class NewUserActivity extends BasicActivity {
 	    	}
 	    }
         super.start(this, LoginActivity.class, true);
-	    //Intent i = new Intent(NewUserActivity.this, LoginActivity.class);
-	    //startActivity(i);
-	    //finish();
 	}
 	
 	/**
@@ -100,12 +89,12 @@ public class NewUserActivity extends BasicActivity {
 	 */
 	private String[] getValues(){
         //Student by default
-        String accounttype = "s";
+        String accounttype = AppCSTR.STUDENT;
         
         if(student.isChecked()){
-			accounttype = "s";
+			accounttype = AppCSTR.STUDENT;
 		}else if(professor.isChecked()){
-			accounttype = "p";
+			accounttype = AppCSTR.PROFESSOR;
 		}
         
         return (new String[]{name,accountnumber,college,email,password,accounttype});

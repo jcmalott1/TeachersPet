@@ -4,10 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
@@ -22,8 +20,6 @@ import java.util.HashMap;
  * @version 1/31/2015
  */
 public class BasicActivity extends Activity {
-    //So Intent knows who it is calling
-    private static final int REQUEST_CODE = 0;
     //To access and modify preference data
     SharedPreferences sharedPref;
     //Set up preference to store data
@@ -31,8 +27,9 @@ public class BasicActivity extends Activity {
     //Store items on a list view
     ArrayList<HashMap<String, String>> alertList;
     //Ids of selected items
-    ArrayList<String> redIDs = new ArrayList<String>();
-    ArrayList<String> greenIDs = new ArrayList<String>();
+    ArrayList<String> redIDs = new ArrayList<>();
+    ArrayList<String> greenIDs = new ArrayList<>();
+    Boolean emptyArray = false;
 
     /**
      * Changes activity from fromScreen to toScreen. Also if kill is true then destroy screen
@@ -51,7 +48,7 @@ public class BasicActivity extends Activity {
     }
 
     /**
-     * Takes data entered and is sent to the database to be retrieved.
+     * Takes data entered and is sent to the database to be retrieved or place information.
      *
      * @param tag Name of contains that user wants to receive. Leave blank if a post method needed.
      * @param data1 Get: Data needed to pass info/ Post: Values being set
@@ -66,14 +63,14 @@ public class BasicActivity extends Activity {
         Intent i;
         if(getItem){
             i = new Intent(callingActivity, GetItemActivity.class);
-            i.putExtra("JSONTag", tag);
+            i.putExtra(AppCSTR.JSON, tag);
         }else{
             i = new Intent(callingActivity, PostItemActivity.class);
         }
-        i.putExtra("data1", data1);
-        i.putExtra("data2", data2);
-        i.putExtra("url", url);
-        startActivityForResult(i, REQUEST_CODE);
+        i.putExtra(AppCSTR.DATA_PASSED, data1);
+        i.putExtra(AppCSTR.DATA_NEEDED, data2);
+        i.putExtra(AppCSTR.URL, url);
+        startActivityForResult(i, AppCSTR.REQUEST_CODE);
     }
 
 //************************************* PREF START **************************************************
@@ -83,7 +80,7 @@ public class BasicActivity extends Activity {
      */
     protected void makePref(){
         //Creates a shared pref called MyPref and 0-> MODE_PRIVATE
-        sharedPref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        sharedPref = getSharedPreferences(AppCSTR.PREF_NAME, Context.MODE_PRIVATE);
         //so the pref can be edit
         edit = sharedPref.edit();
     }
@@ -91,12 +88,14 @@ public class BasicActivity extends Activity {
     /**
      * Stores users' Account Type and id.
      *
-     * @param status Value to be stored.
+     * @param type What kind of account user has.
+     * @param id Users id in the database.
      */
-    protected void setPrefValue(String status, String id){
+    protected void setPrefValue(String type, String id, String name){
         //adds a key value pair to pref
-        edit.putString("accountType", status);
-        edit.putString("id", id);
+        edit.putString(AppCSTR.ACCOUNT_TYPE, type);
+        edit.putString(AppCSTR.ACCOUNT_ID, id);
+        edit.putString(AppCSTR.ACCOUNT_NAME, name);
         //records changes
         edit.commit();
     }
@@ -108,7 +107,7 @@ public class BasicActivity extends Activity {
      */
     protected void setCourseID(String courseID){
         //adds a key value pair to pref
-        edit.putString("courseID", courseID);
+        edit.putString(AppCSTR.ACCOUNT_COURSE, courseID);
         //records changes
         edit.commit();
     }
@@ -119,9 +118,9 @@ public class BasicActivity extends Activity {
      * @return CourseID for the class the user is currently under.
      */
     protected String getCourseID(){
-        sharedPref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        sharedPref = getSharedPreferences(AppCSTR.PREF_NAME, Context.MODE_PRIVATE);
         //Log.d("ID", sharedPref.getString("id", null));
-        return sharedPref.getString("courseID", null);
+        return sharedPref.getString(AppCSTR.ACCOUNT_COURSE, null);
     }
 
     /**
@@ -130,9 +129,9 @@ public class BasicActivity extends Activity {
      * @return User ID.
      */
     protected String getID(){
-        sharedPref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        sharedPref = getSharedPreferences(AppCSTR.PREF_NAME, Context.MODE_PRIVATE);
         //Log.d("ID", sharedPref.getString("id", null));
-        return sharedPref.getString("id", null);
+        return sharedPref.getString(AppCSTR.ACCOUNT_ID, null);
     }
 
     /**
@@ -141,9 +140,20 @@ public class BasicActivity extends Activity {
      * @return User ID.
      */
     protected String getType(){
-        sharedPref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        sharedPref = getSharedPreferences(AppCSTR.PREF_NAME, Context.MODE_PRIVATE);
         //Log.d("TYPE", sharedPref.getString("accountType", null));
-        return sharedPref.getString("accountType", null);
+        return sharedPref.getString(AppCSTR.ACCOUNT_TYPE, null);
+    }
+
+    /**
+     * Return the User's name store in device memory.
+     *
+     * @return Users Name.
+     */
+    protected String getName(){
+        sharedPref = getSharedPreferences(AppCSTR.PREF_NAME, Context.MODE_PRIVATE);
+        //Log.d("TYPE", sharedPref.getString("accountType", null));
+        return sharedPref.getString(AppCSTR.ACCOUNT_NAME, null);
     }
 
 //************************************* PREF END **************************************************
@@ -151,57 +161,34 @@ public class BasicActivity extends Activity {
 //********************************* SELECT ITEM START *********************************************
 
     /**
-     * Changes the color of the listview and stores the alert id of the list view.
+     * Changes the color to white/green/red and stores id.
      *
      * @param view View of list being pressed
+     * @param position position of view in list view
+     * @param key Item to be stored
+     * @param twoColors True if only using two colors
      */
-    protected void changeATTNColor(View view, int position, String key){
-        int green = getResources().getColor(android.R.color.holo_green_light);
-        int red = getResources().getColor(android.R.color.holo_red_light);
-        int white = getResources().getColor(android.R.color.white);
-        int color = Color.TRANSPARENT;
+    protected void changeColor(View view, int position, String key, Boolean twoColors){
+        int color = AppCSTR.TRANS;
         Drawable background = view.getBackground();
 
         if(background instanceof ColorDrawable)
             color = ((ColorDrawable) background).getColor();
 
-        if(color == green){
-            view.setBackgroundColor(red);
+        if(color == AppCSTR.GREEN){
+            if(twoColors)
+                view.setBackgroundColor(AppCSTR.WHITE);
+            else {
+                view.setBackgroundColor(AppCSTR.RED);
+                redIDs.add(getList().get(position).get(key));
+            }
             greenIDs.remove(getList().get(position).get(key));
-            //Log.d("COLORID: ", getList().get(position).get(key));
-            redIDs.add(getList().get(position).get(key));
-        }else if(color == red){
-            view.setBackgroundColor(white);
-            //Log.d("COLORID: ", getList().get(position).get(key));
+        }else if(color == AppCSTR.RED){
+            view.setBackgroundColor(AppCSTR.WHITE);
             redIDs.remove(getList().get(position).get(key));
         }else{
-            view.setBackgroundColor(green);
-            //Log.d("COLORID: ", getList().get(position).get(key));
+            view.setBackgroundColor(AppCSTR.GREEN);
             greenIDs.add(getList().get(position).get(key));
-        }
-    }
-
-    /**
-     * Changes the color of the listview and stores the alert id of the list view.
-     *
-     * @param view View of list being pressed
-     */
-    protected void changeColor(View view, int position, String key){
-        int green = getResources().getColor(android.R.color.holo_green_light);
-        int white = getResources().getColor(android.R.color.white);
-        int color = Color.TRANSPARENT;
-        Drawable background = view.getBackground();
-
-        if(background instanceof ColorDrawable)
-            color = ((ColorDrawable) background).getColor();
-
-        if(color != green){
-            view.setBackgroundColor(green);
-            //Log.d("COLORID: ", getList().get(position).get(key));
-            greenIDs.add(getList().get(position).get(key));
-        }else{
-            view.setBackgroundColor(white);
-            greenIDs.remove(getList().get(position).get(key));
         }
     }
 
@@ -211,18 +198,10 @@ public class BasicActivity extends Activity {
      * @return Ids for selected items.
      */
     protected ArrayList<String> getViewID(String color){
-        if(color.equals("green")){
+        if(color.equals(AppCSTR.GREEN_IDS)){
             return greenIDs;
         }
         return redIDs;
-    }
-
-    /**
-     * Deletes all ids in the list.
-     */
-    protected void clearViewID(){
-        redIDs.clear();
-        greenIDs.clear();
     }
 
 //********************************** SELECT ITEM END ***********************************************
@@ -230,27 +209,33 @@ public class BasicActivity extends Activity {
 //********************************** ADAPTER START *************************************************
 
     /**
-     * Makes  an adapter to attached to Edit Text View.
+     * Makes adapter for a list view to display rows of data.
      *
      * @param data Intent being returned
+     * @param dataNeeded Names of all data being stored in mapping
+     * @param activity Activity that called this method
+     * @param layout Layout of how each view will look
+     * @param ids Ids on layout to place data onto
+     *
      * @return Adapter being attached to View
      */
     protected ListAdapter makeAdapter(Intent data, String[] dataNeeded, Context activity,
                                     int layout, int[] ids){
         //Get items that where returned
-        int count = Integer.parseInt(data.getStringExtra("count"));
-        //Log.d("Count: ", "" + count);
-        alertList = new ArrayList<HashMap<String, String>>();
+        int count = Integer.parseInt(data.getStringExtra(AppCSTR.DB_ROW_COUNT));
+        //holds rows from database
+        String[] row;
+        //Log.e("Count: ", "" + count);
+        alertList = new ArrayList<>();
 
         for(int j = 0; j < count; j++){
-            //single alert
-            String[] items = data.getStringArrayExtra("item" + j);
+            row = data.getStringArrayExtra(AppCSTR.DB_ROW + j);
             // creating new HashMap
-            HashMap<String, String> map = new HashMap<String, String>();
+            HashMap<String, String> map = new HashMap<>();
             for(int i = 0; i < dataNeeded.length; i++){
-                map.put(dataNeeded[i], items[i]);
-                //Log.d("NAME: ", dataNeeded[i]);
-                //Log.d("VALUE: ",items[i]);
+                map.put(dataNeeded[i], row[i]);
+                //Log.e("NAME: ", dataNeeded[i]);
+                //Log.e("VALUE: ",items[i]);
             }
             alertList.add(map);
         }
@@ -264,42 +249,34 @@ public class BasicActivity extends Activity {
     }
 
     /**
-     * Makes  an adapter to a list view.
+     * Makes  an adapter for a list view to display an array of rows.
      *
      * @param data Intent being returned
+     * @param activity Activity that called this method
+     * @param layout Layout of how each view will look
+     * @param ids Ids on layout to place data onto
+     *
      * @return Adapter being attached to View
      */
-    protected ListAdapter makeAdapterArray(Intent data, Boolean passE, Context activity,
-                                      int layout, int[] ids){
+    protected ListAdapter makeAdapterArray(Intent data, Context activity, int layout, int[] ids){
 
-        alertList = new ArrayList<HashMap<String, String>>();
-        String[] extras = null;
+        alertList = new ArrayList<>();
         //Key values for the mapping
-        String[] keyNames = {"name"};
-        String[] item = data.getStringArrayExtra("item0");
+        String[] keyNames = new String[]{AppCSTR.NAME, AppCSTR.EXTRA};
+        //A row with array values in table
+        String[] item = data.getStringArrayExtra(AppCSTR.DB_FIRST_ROW);
         //Take off brackets of string array from database, what is to be displayed in list view.
-        String[] names = arrayParser(item[0]);
+        String[] names = arrayParser(item[AppCSTR.FIRST_ELEMENT]);
         int count = names.length;
-        Log.d("NAME: ", "" + count);
+        String[] extras = getExtraInfo(item, count);
 
-        if(passE) {
-            //All  other data passed besides name
-            extras = getExtraInfo(item, count);
-            //Log.d("ANAMES: ", "" + names[0]);
-            keyNames = new String[]{"name","extra"};
-        }
-
+        //checkEmptyArray(names[AppCSTR.FIRST_ELEMENT]);
         for(int i = 0; i < count; i++){
             // creating new HashMap
-            HashMap<String, String> map = new HashMap<String, String>();
-            map.put("name", names[i]);
-            Log.d("NAME: ", names[i]);
-            if(passE) {
-                map.put("extra", extras[i]);
-                Log.d("Extra: ", extras[i]);
-            }
+            HashMap<String, String> map = new HashMap<>();
+            map.put(AppCSTR.NAME, names[i]);
+            map.put(AppCSTR.EXTRA, extras[i]);
             alertList.add(map);
-            //Log.d("Extra: ", extras[i]);
         }
         /**
          * Details of how the adapter will be laid out.
@@ -309,18 +286,22 @@ public class BasicActivity extends Activity {
                 layout, keyNames, ids);
     }
 
+    private void checkEmptyArray(String element){
+        if(element.equals(""))
+            emptyArray = true;
+    }
+
 
     /**
-     * Takes all the assignment data and groups the data together by each assignment.
+     * Takes array in each column and turns them into rows.
      *
      * @param item Holds all assignment data for student.
      * @param colLength Length that each array is going to be.
+     *
      * @return All assignments grouped by assignment.
      */
     private String[] getExtraInfo(String[] item, int colLength){
         String[][] data = new String[item.length][colLength];
-        //Log.d("ColLength: ", "" + colLength);
-        //Log.d("ItemLength: ", "" + item.length);
         String[] extras  = new String[item.length];
         String dataString = "";
 
@@ -334,7 +315,6 @@ public class BasicActivity extends Activity {
             for(int j = 0; j < (item.length - 1); j++) {
                 dataString += data[j][i] + "%";
             }
-            Log.d("Data: ", dataString);
             extras[i] = dataString;
             dataString = "";
         }
@@ -344,17 +324,18 @@ public class BasicActivity extends Activity {
 
     /**
      * Takes array from database and turns into string array in java.
-     * @param item Array String from databse
+     *
+     * @param item Array String from database
+     *
      * @return Array String in java
      */
     protected String[] arrayParser(String item){
        return item.replaceAll("\\{|\\}|\\[|\\]|(\\d+\":)|\"", "").split(",");
-        //return item2.replaceAll("\"", "").split(",");
     }
 
 
     /**
-     * List that holds all data needed from the listview
+     * List that holds all data needed from the list view
      *
      * @return List of data stored.
      */
@@ -363,14 +344,21 @@ public class BasicActivity extends Activity {
     }
 
     /**
-     * Gets the name for an item or that extras along with it
+     * Gets the name for an item or extras stored with it
+     *
      * @param position Location in the view.
      * @param key Value that user is trying to reach.
-     * @return
+     *
+     * @return Information stored in a list view element
      */
     protected String getNameorExtra(int position, String key){
         return getList().get(position).get(key);
     }
+
+    /**
+     * @return True if array from database is empty.
+     */
+    protected Boolean getArrayStatus(){return emptyArray;}
 
 //********************************** ADAPTER END ****************************************************
 }

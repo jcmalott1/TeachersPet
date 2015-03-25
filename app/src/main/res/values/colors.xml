@@ -25,4 +25,7 @@
     <color name="purple">#6644CC</color>
     <color name="trans">#80000000</color>
     <color name="purple1">#5566FFCC</color>
+
+    <color name="gold">#C1A875</color>
+    <color name="Dark_Gold">#C18000</color>
 </resources>

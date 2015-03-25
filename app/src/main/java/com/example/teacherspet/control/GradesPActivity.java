@@ -5,21 +5,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.teacherspet.R;
+import com.example.teacherspet.model.AppCSTR;
 import com.example.teacherspet.model.BasicActivity;
 import com.example.teacherspet.view.ShowGradesActivity;
 
 /**
- * User interaction for Grades screen
+ * Finds assignments that have been graded.
  *  
  * @author Johnathon Malott, Kevin James
- * @version 2/22/2015
+ * @version 3/24/2015
  */
 public class GradesPActivity extends BasicActivity implements AdapterView.OnItemClickListener{
     //Web page to connect to
-    private static String url_find_grades = "https://morning-castle-9006.herokuapp.com/find_graded.php";
     String[] dataNeeded;
 
     /**
@@ -29,7 +29,6 @@ public class GradesPActivity extends BasicActivity implements AdapterView.OnItem
 	 * @param savedInstanceState Most recently supplied data.
 	 * @Override
 	 */
-	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_17_grades);
@@ -38,7 +37,7 @@ public class GradesPActivity extends BasicActivity implements AdapterView.OnItem
 	}
 
     /**
-     * Gets all the grades from this student.
+     * Gets all the assignments that have been graded.
      */
     private void startSearch(){
         //Name of JSON tag storing data
@@ -46,11 +45,11 @@ public class GradesPActivity extends BasicActivity implements AdapterView.OnItem
         String[] dataPassed = new String[]{"cid", super.getCourseID()};
         dataNeeded = new String[]{"assignment", "position"};
 
-        sendData(tag, dataPassed, dataNeeded, url_find_grades, this, true);
+        sendData(tag, dataPassed, dataNeeded, AppCSTR.URL_FIND_GRADED, this, true);
     }
 
     /**
-     * Called when Intent has returned from startActivityForResult
+     * Set graded assignments to the screen.
      *
      * @param requestCode Number that was assigned to the intent being called.
      * @param resultCode  RESULT_OK if successful, RESULT_CANCELED if failed
@@ -61,14 +60,19 @@ public class GradesPActivity extends BasicActivity implements AdapterView.OnItem
                                     Intent data) {
         //Check request that this is response to
         if (requestCode == 0) {
-            int success = data.getIntExtra("success", -1);
+            int success = data.getIntExtra(AppCSTR.SUCCESS, -1);
             if (success == 0) {
 
                 ListView show = (ListView) findViewById(R.id.grades);
-                int layout = R.layout.list_grade;
-                int[] ids = new int[] {R.id.name, R.id.extra};
-                show.setAdapter(super.makeAdapterArray(data, true, this, layout, ids));
+                int layout = R.layout.list_item;
+                int[] ids = new int[] {R.id.listItem};
+                show.setAdapter(super.makeAdapterArray(data, this, layout, ids));
                 show.setOnItemClickListener(this);
+
+                if(super.getArrayStatus()) {
+                    Toast.makeText(this, "No Assignments not Graded", Toast.LENGTH_LONG).show();
+                    finish();
+                }
             }
         }
     }
@@ -85,8 +89,8 @@ public class GradesPActivity extends BasicActivity implements AdapterView.OnItem
     public void onItemClick(AdapterView<?> parent, View view, int position,
                             long id) {
         Intent i = new Intent(this, ShowGradesActivity.class);
-        i.putExtra("title", ((TextView) findViewById(R.id.name)).getText().toString());
-        i.putExtra("position", ((TextView) findViewById(R.id.extra)).getText().toString().replaceAll("%", ""));
+        i.putExtra(AppCSTR.SHOW_NAME, super.getNameorExtra(position, AppCSTR.SHOW_NAME));
+        i.putExtra(AppCSTR.SHOW_EXTRA, super.getNameorExtra(position, AppCSTR.SHOW_EXTRA));
         startActivity(i);
     }
 }

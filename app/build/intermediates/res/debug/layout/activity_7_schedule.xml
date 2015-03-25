@@ -13,12 +13,12 @@
 	    android:layout_height="0dp"
         android:layout_width="wrap_content"/>
 
-    <!-- Bottom Half -->
+    <!-- Bottom Half -
     <fragment
         android:layout_width="fill_parent"
         android:layout_weight="1"
         android:layout_height="0dp"
-        android:name="com.example.teacherspet.model.TodayScheduleFragment"/>
+        android:name="com.example.teacherspet.model.TodayScheduleFragment"/> -->
 
 
 </LinearLayout><!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/src/main/res/layout/activity_7_schedule.xml -->

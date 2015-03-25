@@ -7,26 +7,22 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.teacherspet.R;
+import com.example.teacherspet.model.AppCSTR;
 import com.example.teacherspet.model.BasicActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Finds courses that user in enrolled in and displays them to the screen.
+ * Finds courses that user is enrolled in or allows user to go to add course screen.
  *  
  * @author Johnathon Malott, Kevin James
- * @version 10/7/2014 
+ * @version 3/21/2015
  */
 public class CoursesActivity extends BasicActivity {
-    //Magic number to find the correct item.
-    final int COURSE = 0;
-    final int COURSEID = 1;
-    String courseID;
-	//String pref;
-	String id;
-	//Web page to connect to
-	private static String url_list_courses = "https://morning-castle-9006.herokuapp.com/list_courses.php";
+    //Finds row item.
+    static final int COURSE = 0;
+    static final int COURSEID = 1;
 	ArrayList<HashMap<String, String>> courseList;
     
 	/**
@@ -39,9 +35,6 @@ public class CoursesActivity extends BasicActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//User ID number
-		id = super.getID();
-		
 		setContentView(R.layout.activity_6_courses);
 		courseList = new ArrayList<HashMap<String, String>>();
 		
@@ -54,10 +47,10 @@ public class CoursesActivity extends BasicActivity {
     private void startSearch(){
         //Name of JSON tag storing data
         String tag = "courseNumber";
-        String [] dataPassed = new String[]{"ID",id};
+        String [] dataPassed = new String[]{"ID", super.getID()};
         String [] dataNeeded = new String[]{"course","courseID"};
 
-        super.sendData(tag, dataPassed, dataNeeded, url_list_courses, this, true);
+        super.sendData(tag, dataPassed, dataNeeded, AppCSTR.URL_LIST_COURSES, this, true);
     }
 	
 	/**
@@ -69,20 +62,20 @@ public class CoursesActivity extends BasicActivity {
 	 */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode,
-	         Intent data) {;
+	         Intent data) {
 		//Check request that this is response to
 	    if (requestCode == 0) {
-	    	int success = data.getIntExtra("success", -1);
+	    	int success = data.getIntExtra(AppCSTR.SUCCESS, -1);
             //0 means successful
 	    	if(success == 0){
                 //Find all buttons that are hidden on screen
 	    		Button [] buttons = {(Button) findViewById(R.id.btn_course0), (Button) findViewById(R.id.btn_course1),
                         (Button) findViewById(R.id.btn_course2), (Button) findViewById(R.id.btn_course3)};
                 //number of courses found
-	    		int count = Integer.parseInt(data.getStringExtra("count"));
+	    		int count = Integer.parseInt(data.getStringExtra(AppCSTR.DB_ROW_COUNT));
 	    		
 	    		for(int i = 0; i < count; i++){
-	    	        String[] item = data.getStringArrayExtra("item" + i);
+	    	        String[] item = data.getStringArrayExtra(AppCSTR.DB_ROW + i);
 	    	        //Log.d("COURSE: ", item[0]);
 	    	        //Button cButton = (Button) findViewById(R.id.btn_course0);
 	    	        buttons[i].setText(item[COURSE]);
@@ -103,13 +96,13 @@ public class CoursesActivity extends BasicActivity {
 	    		}
 	    	}else{
                 //User is enrolled in no classes at this time
-                Toast.makeText(this, "No Class Enrollment", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Need to Add Course", Toast.LENGTH_SHORT).show();
             }
 	     }
 	}
 
     /**
-     * If add course button is hit find out what account user is and go
+     * If add course button is hit find out account type and go
      * to add course screen for that type.
      *
      * @param view View that was interacted with by user.
@@ -120,9 +113,9 @@ public class CoursesActivity extends BasicActivity {
         if(R.id.btn_addCourse == view.getId()){
             //Type of account it is
             String type = super.getType();
-            if(type.equals("s"))
+            if(type.equals(AppCSTR.STUDENT))
                 toScreen = AddCourseSActivity.class;
-            else if(type.equals("p")){
+            else if(type.equals(AppCSTR.PROFESSOR)){
                 toScreen = AddCoursePActivity.class;
             }
         }

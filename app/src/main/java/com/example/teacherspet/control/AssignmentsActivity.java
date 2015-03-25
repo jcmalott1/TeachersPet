@@ -6,37 +6,36 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.teacherspet.R;
+import com.example.teacherspet.model.AppCSTR;
 import com.example.teacherspet.model.BasicActivity;
 import com.example.teacherspet.view.ShowDetailActivity;
 
 
 /**
- * Find all data on user assignments.
+ * Show user all assignments that haven't been graded.
  *
  * @author Johnathon Malott, Kevin James
- * @version 10/7/2014
+ * @version 3/24/2015
  */
 public class AssignmentsActivity extends BasicActivity implements AdapterView.OnItemClickListener{
     //Data collecting from web page
     String[] dataNeeded;
-    //Web page to connect to
-    private static String url_find_assignments = "https://morning-castle-9006.herokuapp.com/find_assignments.php";
 
 
     /**
      * When screen is created set to assignment layout.
-     * Add assignment ListView to screen.
+     * If professor add assignment button to screen.
      *
      * @param savedInstanceState Most recently supplied data.
-     * @Override
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_19_assignments);
-        if(getType().equals("p")){
+        if(getType().equals(AppCSTR.PROFESSOR)){
             ((Button)findViewById(R.id.bnt_assignment)).setVisibility(View.VISIBLE);
         }
         startSearch();
@@ -45,7 +44,7 @@ public class AssignmentsActivity extends BasicActivity implements AdapterView.On
 
 
     /**
-     * Sends items to model to access the database and get data that is needed.
+     * Finds non graded assignments from database.
      */
     private void startSearch() {
         //Name of JSON tag storing data
@@ -53,7 +52,7 @@ public class AssignmentsActivity extends BasicActivity implements AdapterView.On
         String[] dataPassed = new String[]{"cid", super.getCourseID()};
         dataNeeded = new String[]{"name", "dd", "da", "gradet", "dscript"};
 
-        sendData(tag, dataPassed, dataNeeded, url_find_assignments, this, true);
+        sendData(tag, dataPassed, dataNeeded, AppCSTR.URL_FIND_ASSIGN, this, true);
     }
 
     /**
@@ -68,14 +67,17 @@ public class AssignmentsActivity extends BasicActivity implements AdapterView.On
                                     Intent data) {
         //Check request that this is response to
         if (requestCode == 0) {
-            int success = data.getIntExtra("success", -1);
+            int success = data.getIntExtra(AppCSTR.SUCCESS, -1);
             if (success == 0) {
                 ListView assignments = (ListView) findViewById(R.id.assignments);
-                int layout = R.layout.list_grade;
-                int[] ids = new int[] {R.id.name, R.id.extra};
+                int layout = R.layout.list_item;
+                int[] ids = new int[] {R.id.listItem};
 
-                assignments.setAdapter(super.makeAdapterArray(data, true, this, layout, ids));
+                assignments.setAdapter(super.makeAdapterArray(data, this, layout, ids));
                 assignments.setOnItemClickListener(this);
+            }else{
+                //Do nothing, user will see no alerts in his box.
+                Toast.makeText(this, "No Assignment Not graded!!", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -93,14 +95,14 @@ public class AssignmentsActivity extends BasicActivity implements AdapterView.On
                             long id) {
         String details = "Due Date: %Date Assigned: %Grade Total: %Description: ";
         Intent i = new Intent(this, ShowDetailActivity.class);
-        i.putExtra("Name", super.getNameorExtra(position, "name"));
-        i.putExtra("Extra", super.getNameorExtra(position, "extra"));
-        i.putExtra("Details", details);
+        i.putExtra(AppCSTR.SHOW_NAME, super.getNameorExtra(position, AppCSTR.SHOW_NAME));
+        i.putExtra(AppCSTR.SHOW_EXTRA, super.getNameorExtra(position, AppCSTR.SHOW_EXTRA));
+        i.putExtra(AppCSTR.SHOW_DETAIL, details);
         startActivity(i);
     }
 
     /**
-     * Get values for course and send to database.
+     * Go to add course screen.
      *
      * @param view View that was interacted with by user.
      */

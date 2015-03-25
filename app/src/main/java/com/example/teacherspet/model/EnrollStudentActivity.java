@@ -2,51 +2,40 @@ package com.example.teacherspet.model;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 /**
- * Delete alerts from the database.
+ * Enrolls a student into a class by placing them in the database.
  */
 public class EnrollStudentActivity extends BasicActivity {
-	//Web page to connect to
-    private static String url_enroll_student = "https://morning-castle-9006.herokuapp.com/enroll_student.php";
-    //Id of alert
-	String sid;
-    String cid;
-    String aid;
-    //Data to pass to web page
-    String [] itemNames;
-    String [] itemValues;
+    //Holds data from activity that passed it
+    Intent intent;
 
     /**
-     * Store alerts that need to be deleted and searched database for those alerts.
+     * Adds student into the database.
      *
      * @param savedInstanceState Most recently supplied data.
      */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Intent intent = getIntent();
-		sid = intent.getStringExtra("sid");
-        cid = intent.getStringExtra("cid");
-        aid = intent.getStringExtra("aid");
-        Log.d("aid:", aid);
+		intent = getIntent();
 		startSearch();
 	}
 
     /**
-     * Gathers data needed in order to delete alerts and sends to database.
+     * Gathers data needed in order to add student to database.
      */
     private void startSearch(){
-        String[] itemNames = new String[]{"sid","cid"};
-        String [] itemValues = new String[]{sid,cid};
+        String[] itemNames = new String[]{"sid","cid","id","cName"};
+        String[] itemValues = new String[]{intent.getStringExtra(AppCSTR.ALERT_SID),intent.getStringExtra(AppCSTR.ALERT_CID),
+                super.getID(), intent.getStringExtra(AppCSTR.COURSE_NAME)};
 
-        sendData("", itemNames, itemValues, url_enroll_student, this, false);
+        sendData("", itemNames, itemValues, AppCSTR.URL_ENROLL_STUDENT, this, false);
     }
 	
 	/**
-	 * Checks to see if the alerts were deleted successfully.
+	 * Checks to see if student was added and alert deleted successfully.
 	 * 
 	 * @param requestCode Number that was assigned to the intent being called.
 	 * @param resultCode RESULT_OK if successful, RESULT_CANCELED if failed
@@ -58,12 +47,12 @@ public class EnrollStudentActivity extends BasicActivity {
 		//Check request that this is response to
 	    if (requestCode == 0) {
 	    	//Tells if items where added or not. 1 mean successful
-	    	int success = data.getIntExtra("success", -1);
+	    	int success = data.getIntExtra(AppCSTR.SUCCESS, -1);
 	    	//Log.d("Alert Success", "" + success);
 	    	if(success == 0){
 	    		Toast.makeText(getApplicationContext(), "Student Added", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(EnrollStudentActivity.this, DeleteAlertActivity.class);
-                i.putExtra("aid", aid);
+                i.putExtra(AppCSTR.ALERT_AID, intent.getStringExtra(AppCSTR.ALERT_AID));
                 startActivity(i);
                 finish();
 	    	}else {

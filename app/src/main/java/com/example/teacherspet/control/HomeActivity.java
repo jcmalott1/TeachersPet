@@ -8,10 +8,10 @@ import com.example.teacherspet.model.BasicActivity;
 import com.example.teacherspet.R;
 
 /**
- * Back end for user interaction for Home Screen
+ * Allows user to got to alerts, courses, schedule
  *  
  * @author Johnathon Malott, Kevin James
- * @version 10/7/2014 
+ * @version 3/21/2015
  */
 public class HomeActivity extends BasicActivity {
 
@@ -21,7 +21,6 @@ public class HomeActivity extends BasicActivity {
 	 * @param savedInstanceState Most recently supplied data.
 	 * @Override
 	 */
-	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_4_home);
@@ -48,10 +47,6 @@ public class HomeActivity extends BasicActivity {
 		    case R.id.btn_schedule:
 		    	toScreen = ScheduleActivity.class;
 		    	break;
-		    	/**Not a must waiting till later to implement
-		    case R.id.btn_settings:
-		    	toScreen = SettingsActivity.class;
-		    	break;*/
 		    default:
 		   		toScreen = HomeActivity.class;
 		}

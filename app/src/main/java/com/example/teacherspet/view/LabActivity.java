@@ -8,6 +8,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.teacherspet.R;
+import com.example.teacherspet.model.AppCSTR;
 import com.example.teacherspet.model.BasicActivity;
 /**
  * Find all Lab information for the course.
@@ -61,13 +62,13 @@ public class LabActivity extends BasicActivity implements AdapterView.OnItemClic
                                     Intent data) {
         //Check request that this is response to
         if (requestCode == 0) {
-            int success = data.getIntExtra("success",-1);
+            int success = data.getIntExtra(AppCSTR.SUCCESS,-1);
             if(success == 0){
                 ListView labs = (ListView) findViewById(R.id.lab);
-                int layout = R.layout.list_grade;
-                int[] ids = new int[] {R.id.name, R.id.extra};
+                int layout = R.layout.list_item;
+                int[] ids = new int[] {R.id.listItem};
 
-                labs.setAdapter(super.makeAdapterArray(data, true, this, layout, ids));
+                labs.setAdapter(super.makeAdapterArray(data, this, layout, ids));
                 labs.setOnItemClickListener(this);
             } else {
                 //Do nothing, user will see no alerts in his box.

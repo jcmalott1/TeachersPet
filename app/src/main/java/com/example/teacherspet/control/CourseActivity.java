@@ -2,22 +2,21 @@ package com.example.teacherspet.control;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.example.teacherspet.R;
+import com.example.teacherspet.model.AppCSTR;
 import com.example.teacherspet.model.BasicActivity;
 import com.example.teacherspet.view.InformationActivity;
 import com.example.teacherspet.view.LabActivity;
 
 /**
- * Back end for user interaction for Course Screen
+ * Allows user to access attendance, assignments, student roster, grades, lab, and additional data.
  *  
  * @author Johnathon Malott, Kevin James
- * @version 10/7/2014 
+ * @version 3/21/2015
  */
 public class CourseActivity extends BasicActivity {
-     String accountType;
 	/**
 	 * When screen is created set to course layout.
 	 * 
@@ -28,10 +27,6 @@ public class CourseActivity extends BasicActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_11_course);
-
-		//Get the type of account user has
-		accountType = super.getType();
-        Log.d("Type", accountType);
 	}
 
 	/**
@@ -45,7 +40,7 @@ public class CourseActivity extends BasicActivity {
 		//Screen that will be changed to.
 		Class<?> toScreen;
         //
-        Boolean typeP = accountType.equals("p");
+        Boolean typeP = super.getType().equals(AppCSTR.PROFESSOR);
 		
 		switch(view.getId()){
 		    case R.id.btn_attendance:
@@ -61,14 +56,9 @@ public class CourseActivity extends BasicActivity {
 		    case R.id.btn_students:
 		    	toScreen = StudentsActivity.class;
 		    	break;
-		    /**Not a must, waiting till later to implement
-		    case R.id.btn_plan:
-		    	toScreen = CourseActivity.class;
-		    	break;*/
 		    case R.id.btn_grades:
 		    	//Screen is different depending if user is student or professor
 		    	if(typeP) {
-                    //Log.d("GRADES: ", "SENDING");
                     toScreen = GradesPActivity.class;
                 }
 		    	else

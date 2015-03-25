@@ -81,8 +81,8 @@ public class ShowLabActivity extends BasicActivity implements AdapterView.OnItem
             if (success == 0) {
                 ListView courseView = (ListView) findViewById(R.id.commentView);
                 //Get and pass data to make list adapter
-                int layout = R.layout.list_grade;
-                int[] ids = new int[] {R.id.name, R.id.extra};
+                int layout = R.layout.list_item;
+                int[] ids = new int[] {R.id.listItem};
                 courseView.setAdapter(super.makeAdapter(data, dataNeeded, this, layout ,ids));
                 courseView.setOnItemClickListener(this);
             } else {

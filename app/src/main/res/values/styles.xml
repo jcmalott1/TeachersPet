@@ -4,7 +4,7 @@
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+    <style name="AppBaseTheme" parent="Theme.Base.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
@@ -19,8 +19,23 @@
     
     
     <!--***********************************BUTTONS********************************************-->
+    <style name="button">
+      <item name="android:layout_width">250dp</item>
+      <item name="android:layout_height">60dp</item>
+      <item name="android:textColor">@color/gold</item>
+      <item name="android:gravity">center</item>
+      <item name="android:layout_margin">3dp</item>
+      <item name="android:textSize">30sp</item>
+      <item name="android:textStyle">bold</item>
+      <item name="android:shadowColor">#000000</item>
+      <item name="android:shadowDx">1</item>
+      <item name="android:shadowDy">1</item>
+      <item name="android:shadowRadius">2</item>
+    <!-- <item name="android:background">@drawable/mybutton</item> -->
+    </style>
+
     <!--For all basic touch buttons-->
-    <style name="BasicButton">
+    <style name="BasicButton" parent="button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">13sp</item>

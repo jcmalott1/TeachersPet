@@ -18,48 +18,40 @@ import java.util.List;
 /**
  * Finds the data that the user wants and sends it back in a item list.
  * 
- * Returns Extras: list#: Items that where returned from database
+ * Returns Extras: list#: Items that were returned from database
  *                 count: Number of rows returned
  *                 success: If any data was accessed from database
+ *
  * @author Johnathon Malott, Kevin James
- * @version 10/7/2014
+ * @version 3/21/2015
  */
 public class GetItemActivity extends Activity{
 	//Tells how long something takes to be found
 	private ProgressDialog pDialog;
-	private static final String TAG_SUCCESS= "success";
-	//ID for intent
-	private static final int REQUEST_CODE = 0;
 	//Data sending to the web page
 	String[] itemsPassed;
-	//Data needed back from webpage
+	//Data needed back from web page
 	String[] itemsNeeded;
 	//Web page that is being visited
 	String url_to_go;
 	//JSON tag holding data
 	String JSONTag;
-	//Holds JSON data
-	JSONArray courses = null;
 	//Calling Activity to web pages
 	Intent calling = new Intent();
-	//Reads data from web page
-	JSONParser jsonParser = new JSONParser();
 		
 	/**
 	 * When screen is created get all data from intent and set to its
 	 * corresponding value. Then connect to database and find that information.
 	 * 
 	 * @param savedInstanceState Most recently supplied data.
-	 * @Override
 	 */
-	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Intent intent = getIntent();
-		itemsPassed = intent.getStringArrayExtra("data1");
-		itemsNeeded = intent.getStringArrayExtra("data2");
-		JSONTag = intent.getStringExtra("JSONTag");
-		url_to_go = intent.getStringExtra("url");
+		itemsPassed = intent.getStringArrayExtra(AppCSTR.DATA_PASSED);
+		itemsNeeded = intent.getStringArrayExtra(AppCSTR.DATA_NEEDED);
+		JSONTag = intent.getStringExtra(AppCSTR.JSON);
+		url_to_go = intent.getStringExtra(AppCSTR.URL);
 		
 		new LoadItem().execute();
 	}
@@ -76,26 +68,27 @@ public class GetItemActivity extends Activity{
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(GetItemActivity.this);
-            pDialog.setMessage("Loading data. Please wait...");
+            pDialog.setMessage(AppCSTR.GET_MESSAGE);
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
             pDialog.show();
         }
  
         /**
-         * Connects to the database and retrieves the data that the user requested can returns it.
+         * Connects to the database and retrieves the data that the user requested.
          * If data can't be found then a message about why is returned instead.
          * */
         @Override
 		protected String doInBackground(String... args) {
             // Building Parameters
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            List<NameValuePair> params = new ArrayList<>();
             for(int i = 0; i < itemsPassed.length; i += 2){
             params.add(new BasicNameValuePair(itemsPassed[i], itemsPassed[(i+1)]));
-             // Log.d("#DATA: ", itemsPassed[(i+1)]);
+            Log.e("#DATA: ", itemsPassed[(i+1)]);
             }
             
-            // getting JSON string from URL
+            //Reads data from web page
+            JSONParser jsonParser = new JSONParser();
             JSONObject json = jsonParser.makeHttpRequest(url_to_go, "GET", params);
  
             // Check your log cat for JSON reponse
@@ -103,16 +96,15 @@ public class GetItemActivity extends Activity{
             
             try {
                 // Checking for SUCCESS TAG
-                int success = json.getInt(TAG_SUCCESS);
-                String sMessage = json.getString("message");
-                Log.d("SUCCESS: ", "" + success);
-                Log.d("MESSAGE: ", "" + sMessage);
+                int success = json.getInt(AppCSTR.SUCCESS);
+                String sMessage = json.getString(AppCSTR.DB_MESSAGE);
+                Log.e("SUCCESS: ", "" + success);
+                Log.e("MESSAGE: ", "" + sMessage);
  
                 if (success == 0) {
-                    // item found
                     // Getting Array of items
-                    courses = json.getJSONArray(JSONTag);
-                   Log.d("Items: ", courses.toString());
+                   JSONArray courses = json.getJSONArray(JSONTag);
+                   Log.e("Items: ", courses.toString());
  
                     // looping through All items
                     for (int i = 0; i < courses.length(); i++) {
@@ -121,20 +113,18 @@ public class GetItemActivity extends Activity{
                         String[] items = new String[itemsNeeded.length];
                         for(int j = 0; j < itemsNeeded.length; j++){
                         	items[j] = c.getString(itemsNeeded[j]);
-                        	Log.d("GET ITEM: ", items[j]);
+                        	Log.e("GET ITEM: ", items[j]);
                         }
                         //Store row 
-                        calling.putExtra(("item" + i ), items);
+                        calling.putExtra((AppCSTR.DB_ROW + i ), items);
                     }
                     //number of rows stored
-                    calling.putExtra("count", (""+courses.length()));
-                    //if call to database failed or not
-                    calling.putExtra("success", success);
+                    calling.putExtra(AppCSTR.DB_ROW_COUNT, (""+courses.length()));
                 } else{
-                    //If data not found send back why
-                    calling.putExtra("success", success);
-                    calling.putExtra("message", sMessage);
+                    calling.putExtra(AppCSTR.DB_MESSAGE, sMessage);
                 }
+                //Message telling if data was retrieved, why or why not
+                calling.putExtra(AppCSTR.SUCCESS, success);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -151,7 +141,7 @@ public class GetItemActivity extends Activity{
             // dismiss the dialog after getting all products
             pDialog.dismiss();
         	//Send data back to calling activity
-           setResult(REQUEST_CODE, calling);
+           setResult(AppCSTR.REQUEST_CODE, calling);
            //Close this activity
            finish();
         }

@@ -12,10 +12,10 @@ import com.example.teacherspet.R;
 import com.example.teacherspet.model.BasicActivity;
 
 /**
- * Back end for user interaction for Schedule Screen.
+ * Displays a user schedule.
  *  
  * @author Johnathon Malott, Kevin James
- * @version 10/7/2014 
+ * @version 3/21/2014
  */
 public class ScheduleActivity extends BasicActivity implements AdapterView.OnItemClickListener{
     //Data collecting from web page
@@ -34,7 +34,7 @@ public class ScheduleActivity extends BasicActivity implements AdapterView.OnIte
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_7_schedule);
 
-        startSearch();
+        //startSearch();
 	}
 
     /**
@@ -64,11 +64,10 @@ public class ScheduleActivity extends BasicActivity implements AdapterView.OnIte
         if (requestCode == 0) {
             int success = data.getIntExtra("success",-1);
             if(success == 0){
-                super.clearViewID();
                 ListView attendance = (ListView) findViewById(R.id.attnView);
 
                 int layout = R.layout.list_item;
-                int[] ids = new int[] {R.id.itemList};
+                int[] ids = new int[] {R.id.listItem};
                 attendance.setAdapter(super.makeAdapter(data, dataNeeded, this, layout, ids));
                 attendance.setOnItemClickListener(this);
             } else {
@@ -89,7 +88,6 @@ public class ScheduleActivity extends BasicActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,
                             long id) {
-        //Log.d("VIEW 2: ", "" + view.getId());
-        super.changeATTNColor(view, position, "studentID");
+        super.changeColor(view, position, "studentID", false);
     }
 }

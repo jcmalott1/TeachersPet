@@ -9,22 +9,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.teacherspet.R;
+import com.example.teacherspet.model.AppCSTR;
 import com.example.teacherspet.model.BasicActivity;
 
 /**
- * Handles back end for user interaction with Login Screen. Checks that username and password
- * are correct before proceeding.
+ * Login in a user to application, go to make new account screen, or go to forgot login screen.
  *  
  * @author Johnathon Malott, Kevin James
- * @version 10/7/2014 
+ * @version 3/21/2014
  */
 public class LoginActivity extends BasicActivity {
-	//Web page trying to reach
-    private final String url_list_users = "https://morning-castle-9006.herokuapp.com/list_users.php";
-    //Get id/username/password/accounttype from item
-    private final int ID = 0;
-    private final int PASSWORD = 5;
-    private final int ACCOUNTTYPE =6;
 	//New user button
 	Button btn_newUser;
 	//User's username
@@ -34,7 +28,6 @@ public class LoginActivity extends BasicActivity {
 
 	/**
 	 * When screen is created set to login layout.
-	 * Creates new user button and if clicked, go to new user screen.
 	 * 
 	 * @param savedInstanceState Most recently supplied data.
 	 * @Override
@@ -43,26 +36,13 @@ public class LoginActivity extends BasicActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_1_login);
-		
-		btn_newUser = (Button) findViewById(R.id.btn_newUser);
-		btn_newUser.setOnClickListener(new View.OnClickListener(){
-			/**
-			 * Change user interface from login screen to new user screen
-			 * 
-			 * @param v View that was interacted with by user.
-			 */
-			@Override
-			public void onClick(View v){
-				Intent intent = new Intent(LoginActivity.this, NewUserActivity.class);
-				startActivity(intent);
-			}
-		});
 	}
 	
 	/**
-	 * Checks to see if username and password are valid.
-	 * If correct go to home screen.
-	 * If not display that login has failed
+	 * Finds what button the user has pressed and preforms action for that button.
+     * Login: Go to home screen if account information is correct
+     * Forgot: Go to forgot account information screen
+     * New User: Go to new user screen.
 	 * 
 	 * @param view View that was interacted with by user.
 	 */
@@ -75,11 +55,14 @@ public class LoginActivity extends BasicActivity {
 			case R.id.btn_forgot:
 				super.start(this, ForgotLoginActivity.class, false);
 				break;
+            case R.id.btn_newUser:
+                super.start(this, NewUserActivity.class, false);
+                break;
 		}
 	}
 	
 	/**
-	 * Sets up data to be passed to model for a database search.
+	 * Sets up and sends data to be passed to model for a database search.
 	 *
 	 */
 	private void startSearch(){
@@ -89,9 +72,9 @@ public class LoginActivity extends BasicActivity {
 		//JSON name data is stored under
 		String tag = "user";
 		String [] dataPassed = new String[]{"user", username};
-		String [] dataNeeded = new String[]{"id","name","accountnumber","college","email","password", "accounttype"};
+		String [] dataNeeded = new String[]{"id","name","accountnumber","email","password", "accounttype"};
 
-        super.sendData(tag, dataPassed, dataNeeded, url_list_users, this, true);
+        super.sendData(tag, dataPassed, dataNeeded, AppCSTR.URL_LIST_USERS, this, true);
 	}
 	
 	/**
@@ -107,18 +90,20 @@ public class LoginActivity extends BasicActivity {
 	         Intent data) {
 		//Check request that this is a response to
 	    if (requestCode == 0) {
-            int success = data.getIntExtra("success", -1);
+            int success = data.getIntExtra(AppCSTR.SUCCESS, -1);
             //0 means successful
             if(success == 0) {
                 //Can only be one user stored with that login name
-                String[] userInfo = data.getStringArrayExtra("item0");
-                if(password.equals(userInfo[PASSWORD])){
-                    super.setPrefValue(userInfo[ACCOUNTTYPE], userInfo[ID]);
+                String[] userInfo = data.getStringArrayExtra(AppCSTR.DB_FIRST_ROW);
+                if(password.equals(userInfo[AppCSTR.PASSWORD])){
+                    super.setPrefValue(userInfo[AppCSTR.ACCOUNTTYPE], userInfo[AppCSTR.ID], username);
                     super.start(this, HomeActivity.class, false);
                 }else{
+                    //Password didn't match name
                     showToast("Username/Password No Match", false);
                 }
             } else {
+                //User not found
                 showToast("No User Found", true);
             }
 	     }
@@ -131,8 +116,7 @@ public class LoginActivity extends BasicActivity {
      * @param resetAll True: clear out all fields.
      */
     private void showToast(String toast, Boolean resetAll){
-        Toast login_fail = Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_SHORT);
-        login_fail.show();
+        Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_SHORT).show();
         //reset username/password field to nothing
         ((EditText)findViewById(R.id.fld_pwd)).setText("");
         if(resetAll) {

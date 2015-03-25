@@ -6,15 +6,15 @@ import android.os.Bundle;
 
 import com.example.teacherspet.R;
 import com.example.teacherspet.control.LoginActivity;
+import com.example.teacherspet.model.AppCSTR;
 
 /**
  * This is the splash screen, which will preface the login screen.
  *
  * @author Johnathon Malott, Kevin James
- * @version 02/12/2015
+ * @version 03/21/2015
  */
 public class SplashScreenActivity extends Activity {
-    final int PAUSE = 5000;
 
     /**
      * When screen is created, pause for five seconds before going to Login Activity.
@@ -37,11 +37,6 @@ public class SplashScreenActivity extends Activity {
                 finish();
             }
             // Delay for 5 seconds
-        }, PAUSE);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+        }, AppCSTR.PAUSE);
     }
 }

@@ -1,6 +1,8 @@
 package com.example.teacherspet.model;
 
 
+import android.os.AsyncTask;
+
 import java.util.Date;
 import java.util.Properties;
 
@@ -15,8 +17,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-
-import android.os.AsyncTask;
 
 /**
  * Creates a main client to send email without any user interaction.
@@ -57,7 +57,7 @@ public class Mail extends javax.mail.Authenticator {
 	   port = "465";
 	   sport = "465";  
 	   user = "teacherspetwcu@gmail.com";  
-	   pass = "teacherspet"; 
+	   pass = "teacherpet";
 	   from = "teacherspetwcu@gamil.com"; 
 	   subject = ""; 
 	   body = ""; 

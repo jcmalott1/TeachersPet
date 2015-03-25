@@ -7,16 +7,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.teacherspet.R;
+import com.example.teacherspet.model.AppCSTR;
 import com.example.teacherspet.model.BasicActivity;
 
 /**
  * Adds an assignment to the database.
  *
  * @author Johnathon Malott, Kevin James
- * @version 10/7/2014
+ * @version 3/24/2015
  */
 public class AddAssignmentActivity extends BasicActivity {
-    private static String url_add_assignment = "https://morning-castle-9006.herokuapp.com/create_assignment.php";
 
     /**
      * When screen is created set to assignment layout.
@@ -42,18 +42,18 @@ public class AddAssignmentActivity extends BasicActivity {
     }
 
     /**
-     * Sends items to model to access the database and get data that is needed.
+     * Sends new assignment to database.
      */
     private void sendItems() {
         //Name of JSON tag storing data
         String[] itemNames = new String[]{"cid","name","dd","da","total","descript","pid"};
         String[] itemValues = getValues();
 
-        sendData("", itemNames, itemValues, url_add_assignment, this, false);
+        sendData("", itemNames, itemValues, AppCSTR.URL_ADD_ASSIGNMENT, this, false);
     }
 
     /**
-     * Sets the name of the assignment to be displayed in list view.
+     * Notify user if assignment was added.
      *
      * @param requestCode Number that was assigned to the intent being called.
      * @param resultCode  RESULT_OK if successful, RESULT_CANCELED if failed
@@ -66,17 +66,19 @@ public class AddAssignmentActivity extends BasicActivity {
         if (requestCode == 0) {
             int success = data.getIntExtra("success", -1);
             if (success == 0) {
-                Toast.makeText(this, "Assignment Added", Toast.LENGTH_SHORT);
+                Toast.makeText(this, "Assignment Added", Toast.LENGTH_SHORT).show();
+                finish();
             }else{
-                Toast.makeText(this, "Assignment Error", Toast.LENGTH_SHORT);
+                Toast.makeText(this, "Assignment Error", Toast.LENGTH_SHORT).show();
             }
         }
 
     }
 
     /**
+     * Get all data the user has entered.
      *
-     * @return
+     * @return Data user entered.
      */
     private String[] getValues(){
         String cid = super.getCourseID();

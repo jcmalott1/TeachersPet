@@ -26,26 +26,28 @@
 	    </LinearLayout>
     
     <!-- Middle Layout -->
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@id/addTop"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="50dp">
+
     <LinearLayout
         android:id="@+id/viewLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/black">
+        android:layout_below="@id/addTop"
+        android:orientation="vertical"
+        android:weightSum="10"
+        android:layout_marginBottom="50dp">
 	    <!-- Display Course View -->
+        <TextView
+            style="@style/BasicText"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:text="@string/lbl_heading"/>
         <ListView
             android:id="@+id/courseView"
+            android:layout_weight="9"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_margin="2dp"
             android:background="@android:color/white"/>
     </LinearLayout>
-    </ScrollView>
     
     <!-- Submit Button -->
     <Button 

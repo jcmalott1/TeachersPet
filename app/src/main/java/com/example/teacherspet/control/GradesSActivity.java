@@ -5,9 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.teacherspet.R;
+import com.example.teacherspet.model.AppCSTR;
 import com.example.teacherspet.model.BasicActivity;
 import com.example.teacherspet.view.ShowDetailActivity;
 
@@ -15,11 +16,9 @@ import com.example.teacherspet.view.ShowDetailActivity;
  * Gets all the assignments that have been graded for this student.
  *  
  * @author Johnathon Malott, Kevin James
- * @version 2/22/2015
+ * @version 3/24/2015
  */
 public class GradesSActivity extends BasicActivity implements AdapterView.OnItemClickListener{
-    //Web page to connect to
-    private static String url_find_grades = "https://morning-castle-9006.herokuapp.com/find_grades.php";
     String[] dataNeeded;
 
     /**
@@ -27,7 +26,6 @@ public class GradesSActivity extends BasicActivity implements AdapterView.OnItem
 	 * Add students' grades as ListView to screen.
 	 * 
 	 * @param savedInstanceState Most recently supplied data.
-	 * @Override
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +36,7 @@ public class GradesSActivity extends BasicActivity implements AdapterView.OnItem
 	}
 
     /**
-     * Gets all the grades from this student.
+     * Get all assignments that have been graded for this user.
      */
     private void startSearch(){
         //Name of JSON tag storing data
@@ -46,11 +44,11 @@ public class GradesSActivity extends BasicActivity implements AdapterView.OnItem
         String[] dataPassed = new String[]{"sid", super.getID(),"cid", super.getCourseID()};
         dataNeeded = new String[]{"names","dd","da","gradet","grader","dscript"};
 
-        sendData(tag, dataPassed, dataNeeded, url_find_grades, this, true);
+        sendData(tag, dataPassed, dataNeeded, AppCSTR.URL_FIND_GRADES, this, true);
     }
 
     /**
-     * Called when Intent has returned from startActivityForResult
+     * List all grades to the screen.
      *
      * @param requestCode Number that was assigned to the intent being called.
      * @param resultCode  RESULT_OK if successful, RESULT_CANCELED if failed
@@ -61,13 +59,18 @@ public class GradesSActivity extends BasicActivity implements AdapterView.OnItem
                                     Intent data) {
         //Check request that this is response to
         if (requestCode == 0) {
-            int success = data.getIntExtra("success", -1);
+            int success = data.getIntExtra(AppCSTR.SUCCESS, -1);
             if (success == 0) {
                 ListView assignments = (ListView) findViewById(R.id.grades);
-                int layout = R.layout.list_grade;
-                int[] ids = new int[] {R.id.name, R.id.extra};
-                assignments.setAdapter(super.makeAdapterArray(data, true, this, layout, ids));
+                int layout = R.layout.list_item;
+                int[] ids = new int[] {R.id.listItem};
+                assignments.setAdapter(super.makeAdapterArray(data, this, layout, ids));
                 assignments.setOnItemClickListener(this);
+
+                if(super.getArrayStatus()) {
+                    Toast.makeText(this, "No Grades", Toast.LENGTH_LONG).show();
+                    finish();
+                }
             }
         }
     }
@@ -85,9 +88,9 @@ public class GradesSActivity extends BasicActivity implements AdapterView.OnItem
                             long id) {
         String details = "Due Date: %Date Assigned: %Grade Total: %Grade Received: %Description: ";
         Intent i = new Intent(this, ShowDetailActivity.class);
-        i.putExtra("Name", ((TextView) findViewById(R.id.name)).getText().toString());
-        i.putExtra("Extra", ((TextView) findViewById(R.id.extra)).getText().toString());
-        i.putExtra("Details", details);
+        i.putExtra(AppCSTR.SHOW_NAME, super.getNameorExtra(position, AppCSTR.SHOW_NAME));
+        i.putExtra(AppCSTR.SHOW_EXTRA, super.getNameorExtra(position, AppCSTR.SHOW_EXTRA));
+        i.putExtra(AppCSTR.SHOW_DETAIL, details);
         startActivity(i);
     }
 }

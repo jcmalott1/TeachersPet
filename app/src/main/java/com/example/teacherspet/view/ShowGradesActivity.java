@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.teacherspet.R;
+import com.example.teacherspet.model.AppCSTR;
 import com.example.teacherspet.model.BasicActivity;
 
 
@@ -15,43 +16,39 @@ import com.example.teacherspet.model.BasicActivity;
  * @version 2/24/2015
  */
 public class ShowGradesActivity extends BasicActivity {
-    String position, title;
-    private static String url_find_student_grades = "https://morning-castle-9006.herokuapp.com/find_student_grades.php";
+    //Intent that passed data
+    Intent i;
     String[] dataNeeded;
 
     /**
      * When screen is created set to show layout.
-     * Get all data that was passed.
+     * Get intent that passed data.
      *
      * @param savedInstanceState Most recently supplied data.
-     * @Override
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_detail);
 
-        Intent intent = getIntent();
-        title = intent.getStringExtra("title");
-        position = intent.getStringExtra("position");
-
+        i = getIntent();
         startSearch();
     }
 
     /**
-     * Gets all the grades from this student.
+     * Gets all grades that are for that assignment.
      */
     private void startSearch(){
         //Name of JSON tag storing data
         String tag = "grades";
-        String[] dataPassed = new String[]{"cid", super.getCourseID(), "pos", position};
+        String[] dataPassed = new String[]{"cid", super.getCourseID(), "pos", i.getStringExtra(AppCSTR.SHOW_EXTRA)};
         dataNeeded = new String[]{"grade","name"};
 
-        sendData(tag, dataPassed, dataNeeded, url_find_student_grades, this, true);
+        sendData(tag, dataPassed, dataNeeded, AppCSTR.URL_FIND_STUDENT_GRADES, this, true);
     }
 
     /**
-     * Called when Intent has returned from startActivityForResult
+     * Sets all grades for that assignment to the screen.
      *
      * @param requestCode Number that was assigned to the intent being called.
      * @param resultCode  RESULT_OK if successful, RESULT_CANCELED if failed
@@ -62,16 +59,15 @@ public class ShowGradesActivity extends BasicActivity {
                                     Intent data) {
         //Check request that this is response to
         if (requestCode == 0) {
-            int success = data.getIntExtra("success", -1);
+            int success = data.getIntExtra(AppCSTR.SUCCESS, -1);
             if (success == 0) {
-
                 String descript = "";
-                int count = Integer.parseInt(data.getStringExtra("count"));
+                int count = Integer.parseInt(data.getStringExtra(AppCSTR.COUNT));
                 for(int i = 0; i < count; i++){
-                    String[] item = data.getStringArrayExtra("item" + i);
+                    String[] item = data.getStringArrayExtra(AppCSTR.DB_ROW + i);
                     descript += "\n\n" + item[1] + ": " + item[0];
                 }
-                ((TextView) findViewById(R.id.title)).setText(title);
+                ((TextView) findViewById(R.id.title)).setText(i.getStringExtra(AppCSTR.SHOW_NAME));
                 ((TextView) findViewById(R.id.descript)).setText(descript);
             }
         }

@@ -80,6 +80,11 @@
     <bool name="abc_config_allowActionMenuItemTextWithIcon">false</bool>
     <bool name="abc_config_showMenuShortcutsWhenKeyboardPresent">false</bool>
     <bool name="abc_split_action_bar_is_narrow">true</bool>
+    <!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="Dark_Gold">#C18000</color>
+    <!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/res/values/values.xml -->
+    <eat-comment/>
     <color name="abc_search_url_text_normal">#7fa87f</color>
     <color name="abc_search_url_text_pressed">@android:color/black</color>
     <color name="abc_search_url_text_selected">@android:color/black</color>
@@ -94,6 +99,7 @@
     <color name="dk_grey">#444444</color>
     <color name="dk_pink">#440044</color>
     <color name="dk_red">#331111</color>
+    <color name="gold">#C1A875</color>
     <color name="green">#226622</color>
     <color name="grey">#999999</color>
     <color name="lt_blue">#4444cc</color>
@@ -230,6 +236,7 @@
     <string name="lbl_friday">Friday</string>
     <string name="lbl_gName">Name of Assignment</string>
     <string name="lbl_grades">Grades</string>
+    <string name="lbl_heading">Professor \t\t Course/Section \t Term \t\t\t Time</string>
     <string name="lbl_info">Additional Information</string>
     <string name="lbl_lab">Lab</string>
     <string name="lbl_logged">Logged In</string>
@@ -253,8 +260,8 @@
     <string name="lbl_upload">Upload</string>
     <string name="lbl_wednesday">Wednesday</string>
     <string name="lbl_yes">Yes</string>
-    <string name="student_login">john</string>
-    <string name="student_login2">Boats</string>
+    <string name="student_login">Catamount</string>
+    <string name="student_login2">WCU1</string>
     <string name="title_activity_ATTN">Attendance</string>
     <string name="title_activity_add_assignment">AddAssignmentActivity</string>
     <string name="title_activity_add_comment">AddCommentActivity</string>
@@ -299,7 +306,7 @@
     <style name="ActionButton" parent="@style/BasicButton">
         <item name="android:onClick">onClicked</item>
     </style>
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+    <style name="AppBaseTheme" parent="Theme.Base.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
@@ -315,7 +322,7 @@
         <item name="android:textSize">13sp</item>
         <item name="android:inputType">text|textAutoCorrect</item>
     </style>
-    <style name="BasicButton">
+    <style name="BasicButton" parent="button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">13sp</item>
@@ -946,4 +953,20 @@
     <style name="Widget.AppCompat.ProgressBar" parent="Widget.AppCompat.Base.ProgressBar"/>
     <style name="Widget.AppCompat.ProgressBar.Horizontal" parent="Widget.AppCompat.Base.ProgressBar.Horizontal"/>
     <style name="Widget.AppCompat.Spinner.DropDown.ActionBar" parent="Widget.AppCompat.Base.Spinner"/>
+    <!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="button">
+      <item name="android:layout_width">250dp</item>
+      <item name="android:layout_height">60dp</item>
+      <item name="android:textColor">@color/gold</item>
+      <item name="android:gravity">center</item>
+      <item name="android:layout_margin">3dp</item>
+      <item name="android:textSize">30sp</item>
+      <item name="android:textStyle">bold</item>
+      <item name="android:shadowColor">#000000</item>
+      <item name="android:shadowDx">1</item>
+      <item name="android:shadowDy">1</item>
+      <item name="android:shadowRadius">2</item>
+    <!-- <item name="android:background">@drawable/mybutton</item> -->
+    </style>
 </resources>

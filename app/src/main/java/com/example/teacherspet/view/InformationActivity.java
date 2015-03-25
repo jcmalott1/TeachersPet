@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.teacherspet.R;
+import com.example.teacherspet.model.AppCSTR;
 import com.example.teacherspet.model.BasicActivity;
 
 /**
@@ -64,13 +65,13 @@ public class InformationActivity extends BasicActivity implements AdapterView.On
                                     Intent data) {
         //Check request that this is response to
         if (requestCode == 0) {
-            int success = data.getIntExtra("success",-1);
+            int success = data.getIntExtra(AppCSTR.SUCCESS,-1);
             if(success == 0){
                 ListView attendance = (ListView) findViewById(R.id.extra);
 
-                int layout = R.layout.list_grade;
-                int[] ids = new int[] {R.id.name,R.id.extra};
-                attendance.setAdapter(super.makeAdapterArray(data, true, this, layout, ids));
+                int layout = R.layout.list_item;
+                int[] ids = new int[] {R.id.listItem};
+                attendance.setAdapter(super.makeAdapterArray(data, this, layout, ids));
                 attendance.setOnItemClickListener(this);
             } else {
                 //Do nothing, user will see no alerts in his box.

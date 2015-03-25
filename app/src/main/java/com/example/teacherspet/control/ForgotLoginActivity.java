@@ -6,20 +6,19 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.teacherspet.model.AppCSTR;
 import com.example.teacherspet.model.BasicActivity;
 import com.example.teacherspet.R;
 import com.example.teacherspet.model.Mail;
 
 /**
- * Handles back end of user interaction for Forgot Login Screen. If user is in database it will sent
- * an email with password in it.
+ * If user is found in database then an email with username/password will be sent
+ * to email listed in database for that user.
  *  
  * @author Johnathon Malott, Kevin James
- * @version 10/7/2014 
+ * @version 3/21/2015
  */
 public class ForgotLoginActivity extends BasicActivity {
-	//Web page trying to reach
-	private final String url_list_users = "https://morning-castle-9006.herokuapp.com/list_users.php";
 	//Get userid/email/username/password from item
 	private final int EMAIL = 1;
 	private final int USERNAME = 0;
@@ -53,13 +52,12 @@ public class ForgotLoginActivity extends BasicActivity {
 	 */
 	private void startSearch(){
 		//Get id number entered
-		EditText txtID = (EditText) findViewById(R.id.userID);
-		String userID = txtID.getText().toString();
+        String user920 = ((EditText) findViewById(R.id.userID)).getText().toString();
         //Set up and send data
 		String tag = "user";
-		String [] dataPassed = new String[]{"userID", userID};
+		String [] dataPassed = new String[]{"920", user920};
 		String [] dataNeeded = new String[]{"name","email","password"};
-        super.sendData(tag, dataPassed, dataNeeded, url_list_users, this, true);
+        super.sendData(tag, dataPassed, dataNeeded, AppCSTR.URL_FIND_920, this, true);
 	}
 	
 	/**
@@ -76,23 +74,19 @@ public class ForgotLoginActivity extends BasicActivity {
 		Boolean passed = false;
 		//Check request that this is response to
 	    if (requestCode == 0) {
-            int success = data.getIntExtra("success", -1);
+            int success = data.getIntExtra(AppCSTR.SUCCESS, -1);
             //0 Means successful
             if(success == 0){
                 //Can only be one user with that 920#
-                String[] item = data.getStringArrayExtra("item0");
-                String username = item[USERNAME];
-                String password = item[PASSWORD];
-                String email = item[EMAIL];
+                String[] item = data.getStringArrayExtra(AppCSTR.DB_FIRST_ROW);
 
                 try {
-                    sendMail(email, username, password);
+                    sendMail(item[EMAIL], item[USERNAME], item[PASSWORD]);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }else {
-                Toast not_found = Toast.makeText(getApplicationContext(), "ID not found.", Toast.LENGTH_SHORT);
-                not_found.show();
+                Toast.makeText(getApplicationContext(), "ID not found.", Toast.LENGTH_SHORT).show();
                 super.start(this, ForgotLoginActivity.class, true);
             }
 	     }
@@ -103,14 +97,12 @@ public class ForgotLoginActivity extends BasicActivity {
 	 */
 	private void sendMail(String email, String user, String pass){
 		//Sending email
-		 //new SendTask().execute();
 		 Mail mail = new Mail();
 	     mail.setTo(new String[]{email});
 	     mail.setSubject("Lost password");
 	     mail.setBody("Username: " + user + " Password: " + pass);
 	     mail.sendMail();
-	     Toast mail_sent = Toast.makeText(getApplicationContext(), "Email sent!", Toast.LENGTH_SHORT);
-		 mail_sent.show();
+	     Toast.makeText(getApplicationContext(), "Email sent!", Toast.LENGTH_SHORT).show();
 	}
 }
 

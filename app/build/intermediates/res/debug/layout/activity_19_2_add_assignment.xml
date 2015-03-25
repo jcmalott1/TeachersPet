@@ -45,8 +45,7 @@
             android:id="@+id/fld_aDescript"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/lbl_descript"
-            android:digits="@string/alphabet"/>
+            android:hint="@string/lbl_descript"/>
     </LinearLayout>
 
     <!-- Bottom Submit Button -->

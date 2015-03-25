@@ -26,6 +26,7 @@
     <string name="lbl_enter_pName">Professors Name</string>
     <string name="lbl_enter_course">Course</string>
     <string name="lbl_enter_term">Term</string>
+    <string name="lbl_heading">Professor \t\t Course/Section \t Term \t\t\t Time</string>
     <string name="lbl_enter_section">Section</string>
     <string name="lbl_enter_cTime">Course Time</string>
     <!-- Student Version -->
@@ -102,8 +103,8 @@
     <string name="title_activity_students">StudentsActivity</string>
 
     <!-- *******************************LOGIN****************************************** -->
-    <string name="student_login">john</string>
-    <string name="student_login2">Boats</string>
+    <string name="student_login">Catamount</string>
+    <string name="student_login2">WCU1</string>
 
     <string-array name="login_array">
         <item>student</item>

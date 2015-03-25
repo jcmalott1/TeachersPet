@@ -9,28 +9,26 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.teacherspet.R;
+import com.example.teacherspet.model.AppCSTR;
 import com.example.teacherspet.model.BasicActivity;
 import com.example.teacherspet.model.StudentAlertActivity;
 
 /**
- * Allows student user to search for a course and send alert to professor to join it.
+ * Allows student user to search for a course, join course, and send alert to professor to join it.
  * 
  * @author Johnathon Malott, Kevin James
- * @version 10/7/2014 
+ * @version 3/21/2015
  */
 public class AddCourseSActivity extends BasicActivity implements AdapterView.OnItemClickListener{
     //data returned from database
     String [] dataNeeded;
-	//Web page to connect to
-	private static String url_list_course = "https://morning-castle-9006.herokuapp.com/list_course.php";
 
 	/**
 	 * When screen is create set to student add course layout.
 	 * 
 	 * @param savedInstanceState Most recently supplied data.
-	 * @Override
 	 */
-	@Override
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_10s_add_course);
@@ -45,14 +43,20 @@ public class AddCourseSActivity extends BasicActivity implements AdapterView.OnI
     public void onClicked(View view){
         switch(view.getId()){
             case R.id.btn_find:
-                startSearch();
+                if( ((EditText)findViewById(R.id.cID)).getText().toString().equals(""))
+                   Toast.makeText(this, "Enter ID #", Toast.LENGTH_LONG).show();
+                else
+                   startSearch();
                 break;
             case R.id.btn_submit:
-                //Log.d("COUNT:", "" + (super.getViewID()).size());
-                Intent i = new Intent(this, StudentAlertActivity.class);
-                i.putStringArrayListExtra("viewIDs", super.getViewID("green"));
-                startActivity(i);
-                //super.start(this, StudentAlertActivity.class, true);
+                if(super.getViewID(AppCSTR.GREEN_IDS).size() != 0) {
+                    Intent i = new Intent(this, StudentAlertActivity.class);
+                    i.putStringArrayListExtra(AppCSTR.ALL_IDS, super.getViewID(AppCSTR.GREEN_IDS));
+                    startActivity(i);
+                    finish();
+                }
+                else
+                    Toast.makeText(this, "No course selected!", Toast.LENGTH_LONG).show();
                 break;
         }
     }
@@ -64,11 +68,11 @@ public class AddCourseSActivity extends BasicActivity implements AdapterView.OnI
         //Get pid
         String cid = ((EditText) findViewById(R.id.cID)).getText().toString();
         //Name of JSON tag storing data
-        String tag = "courses";
+        String tag = "course";
         String [] dataPassed = new String[]{"cid",cid};
         dataNeeded = new String[]{"cid","pname","course","term","time","section"};
 
-        sendData(tag, dataPassed, dataNeeded, url_list_course, this, true);
+        sendData(tag, dataPassed, dataNeeded, AppCSTR.URL_FIND_COURSES, this, true);
     }
 	
 	/**
@@ -78,16 +82,14 @@ public class AddCourseSActivity extends BasicActivity implements AdapterView.OnI
 	 * @param resultCode RESULT_OK if successful, RESULT_CANCELED if failed
 	 * @param data Intent that was just exited.
 	 */
-	@Override
+    @Override
 	protected void onActivityResult(int requestCode, int resultCode,
-	         Intent data) {;
+	         Intent data) {
 		//Check request that this is response to
 	    if (requestCode == 0) {
-            int success = data.getIntExtra("success", -1);
+            int success = data.getIntExtra(AppCSTR.SUCCESS, -1);
             if(success == 0){
-               super.clearViewID();
-
-                // updating listview
+                // updating list view
                 ListView courseView = (ListView) findViewById(R.id.courseView);
                 //Get and pass data to make list adapter
                 int layout = R.layout.list_course;
@@ -114,6 +116,6 @@ public class AddCourseSActivity extends BasicActivity implements AdapterView.OnI
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,
                             long id) {
-        super.changeColor(view, position, "cid");
+        super.changeColor(view, position, "cid", true);
     }
 }
