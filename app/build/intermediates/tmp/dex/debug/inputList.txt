@@ -1,8 +1,8 @@
-E:\JC_Computer\Teachers_Pet\TeacherPet\app\build\intermediates\classes\debug
-E:\JC_Computer\Teachers_Pet\TeacherPet\app\build\intermediates\pre-dexed\debug\support-annotations-20.0.0-4b8fe15967df53e701e324838c2d371b97b544e8.jar
-E:\JC_Computer\Teachers_Pet\TeacherPet\app\build\intermediates\pre-dexed\debug\activation-8862ca55c787831f1a3dd1a171845b3ecb6fe512.jar
-E:\JC_Computer\Teachers_Pet\TeacherPet\app\build\intermediates\pre-dexed\debug\additionnal-f3d6e96c32d6b18988c73fb26c706041c7b1be59.jar
-E:\JC_Computer\Teachers_Pet\TeacherPet\app\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-72a6df8c1a1a9d2cee4fa9f991cdaee84cbacb32.jar
-E:\JC_Computer\Teachers_Pet\TeacherPet\app\build\intermediates\pre-dexed\debug\classes-e9db331175f73ee1b28622103af75f71b282ecfc.jar
-E:\JC_Computer\Teachers_Pet\TeacherPet\app\build\intermediates\pre-dexed\debug\mail-33052370c4effcf04888ba718e6c2d8d83217e85.jar
-E:\JC_Computer\Teachers_Pet\TeacherPet\app\build\intermediates\pre-dexed\debug\classes-14d0ed7525e8eea227550306fc052a057be55d29.jar
+C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\build\intermediates\classes\debug
+C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\build\intermediates\pre-dexed\debug\support-annotations-20.0.0-10b86b1e375e72d36b5294360fd57eb8bd8e9d5f.jar
+C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\build\intermediates\pre-dexed\debug\activation-810c62083e3aa51771c25666b13f6ac4a02a4905.jar
+C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\build\intermediates\pre-dexed\debug\additionnal-4d266afd96a661e461245cfa06ee7933b9628a38.jar
+C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-b20507c0f5ee4c5f5e006b6d289f0084ebb93365.jar
+C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\build\intermediates\pre-dexed\debug\classes-6dca1a8e3baccdf171913e9e5090056c70f02fe3.jar
+C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\build\intermediates\pre-dexed\debug\mail-e7421a1402c3aea731e61bc59d20f7e705fa2903.jar
+C:\Users\Kevin\AndroidStudioProjects\TeacherPet\TeachersPet\app\build\intermediates\pre-dexed\debug\classes-88d7d80627d7a1f6476ffeae7e43bd1813256199.jar

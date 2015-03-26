@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/BasicLayout"
-    tools:context="com.example.teacherspet.control.LoginActivity" >
+    tools:context="com.example.teacherspet.control.LoginActivity">
 
     <!-- Header for Screen -->
     <TextView
@@ -9,10 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/hello_teacher" 
-        android:textSize="20sp"
-        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        android:textColor="@color/gold"
         android:textStyle="bold"
-        android:background="@android:color/black"
+        android:background="@color/dk_purple"
         android:gravity="center"/>
     
     <!-- User Name Block -->
@@ -25,6 +25,7 @@
         <!-- User Name Entry -->
         <EditText
             android:id="@+id/fld_username"
+            android:hint="@string/login_usr_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/student_login" 
@@ -43,6 +44,7 @@
         <!-- Password Entry -->
         <EditText
             android:id="@+id/fld_pwd"
+            android:hint="@string/login_pwd_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/student_login2"
@@ -80,4 +82,4 @@
          />
 
 </RelativeLayout>
-<!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/src/main/res/layout/activity_1_login.xml -->
+<!-- From: file:/C:/Users/Kevin/AndroidStudioProjects/TeacherPet/TeachersPet/app/src/main/res/layout/activity_1_login.xml -->

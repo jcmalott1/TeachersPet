@@ -70,7 +70,7 @@ public class GradesPActivity extends BasicActivity implements AdapterView.OnItem
                 show.setOnItemClickListener(this);
 
                 if(super.getArrayStatus()) {
-                    Toast.makeText(this, "No Assignments not Graded", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "No Assignments Graded", Toast.LENGTH_LONG).show();
                     finish();
                 }
             }

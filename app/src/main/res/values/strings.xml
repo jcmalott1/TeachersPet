@@ -6,7 +6,7 @@
     <string name="lbl_register">Register</string>
     <string name="lbl_delete">Delete</string>
     <string name="lbl_upload">Upload</string>
-    <string name="app_name">TeacherPet</string>
+    <string name="app_name">TeachersPet</string>
     <string name="lbl_enter_username">Enter Username</string>
     <string name="lbl_enter_pwd">Enter Password</string>
     <string name="lbl_login">Login</string>
@@ -105,6 +105,8 @@
     <!-- *******************************LOGIN****************************************** -->
     <string name="student_login">Catamount</string>
     <string name="student_login2">WCU1</string>
+    <string name="login_usr_hint">Username</string>
+    <string name="login_pwd_hint">Password</string>
 
     <string-array name="login_array">
         <item>student</item>

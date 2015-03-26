@@ -3,12 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    style="@style/BasicLayout">
     
     <!-- Layout For Screen -->
 	<LinearLayout
 	    android:orientation="vertical"
 	    style="@style/BasicLayout"
+        android:background="@color/trans"
 	    tools:context="com.example.teacherspet.control.CourseActivity" >
 	
 	    <!-- Attendance Button -->
@@ -49,4 +51,4 @@
 	        style="@style/CenterVButton" />
 	
 	</LinearLayout>
-</ScrollView><!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/src/main/res/layout/activity_11_course.xml -->
+</ScrollView><!-- From: file:/C:/Users/Kevin/AndroidStudioProjects/TeacherPet/TeachersPet/app/src/main/res/layout/activity_11_course.xml -->

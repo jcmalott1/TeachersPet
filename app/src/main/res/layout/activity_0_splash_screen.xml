@@ -5,7 +5,7 @@
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     android:paddingBottom="0dp"
-    android:background="@color/purple"
+    android:background="@color/dk_purple"
     tools:context="com.example.teacherspet.view.SplashScreenActivity">
 
     <TextView
@@ -14,20 +14,17 @@
         android:id="@+id/splash_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:paddingTop="@dimen/activity_vertical_margin"
         android:layout_centerHorizontal="true"
         android:textColor="@color/yellow"
-        android:textSize="45dp" />
+        android:textSize="45sp" />
 
     <ImageView
+        android:id="@+id/splash_ic"
+        android:src="@drawable/ic_teachers_pet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/splash_cat"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/splash_title"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/splash_title"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

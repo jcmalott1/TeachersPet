@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/Kevin/AndroidStudioProjects/TeacherPet/TeachersPet/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string-array name="lab_array">
         <item>Nested Loop Lab</item>
@@ -9,7 +9,7 @@
         <item>student</item>
         <item>professor</item>
     </string-array>
-    <!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Kevin/AndroidStudioProjects/TeacherPet/TeachersPet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/res/values/values.xml -->
     <eat-comment/>
     <attr format="reference" name="actionBarDivider"/>
     <attr format="reference" name="actionBarItemBackground"/>
@@ -80,15 +80,15 @@
     <bool name="abc_config_allowActionMenuItemTextWithIcon">false</bool>
     <bool name="abc_config_showMenuShortcutsWhenKeyboardPresent">false</bool>
     <bool name="abc_split_action_bar_is_narrow">true</bool>
-    <!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/C:/Users/Kevin/AndroidStudioProjects/TeacherPet/TeachersPet/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="Dark_Gold">#C18000</color>
-    <!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Kevin/AndroidStudioProjects/TeacherPet/TeachersPet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/res/values/values.xml -->
     <eat-comment/>
     <color name="abc_search_url_text_normal">#7fa87f</color>
     <color name="abc_search_url_text_pressed">@android:color/black</color>
     <color name="abc_search_url_text_selected">@android:color/black</color>
-    <!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/C:/Users/Kevin/AndroidStudioProjects/TeacherPet/TeachersPet/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="black">#000000</color>
     <color name="blue">#222266</color>
@@ -98,6 +98,7 @@
     <color name="dk_green">#113311</color>
     <color name="dk_grey">#444444</color>
     <color name="dk_pink">#440044</color>
+    <color name="dk_purple">#580077</color>
     <color name="dk_red">#331111</color>
     <color name="gold">#C1A875</color>
     <color name="green">#226622</color>
@@ -113,7 +114,7 @@
     <color name="purple1">#5566FFCC</color>
     <color name="red">#662222</color>
     <color name="red1">#77662222</color>
-    <color name="trans">#80000000</color>
+    <color name="trans">#10000000</color>
     <color name="white">#ffffff</color>
     <color name="yellow">#FFFF00</color>
     <declare-styleable name="ActionBar"><attr name="navigationMode"><enum name="normal" value="0"/><enum name="listMode" value="1"/><enum name="tabMode" value="2"/></attr><attr name="displayOptions"><flag name="useLogo" value="0x1"/><flag name="showHome" value="0x2"/><flag name="homeAsUp" value="0x4"/><flag name="showTitle" value="0x8"/><flag name="showCustom" value="0x10"/><flag name="disableHome" value="0x20"/></attr><attr name="title"/><attr format="string" name="subtitle"/><attr format="reference" name="titleTextStyle"/><attr format="reference" name="subtitleTextStyle"/><attr format="reference" name="icon"/><attr format="reference" name="logo"/><attr format="reference" name="divider"/><attr format="reference" name="background"/><attr format="reference|color" name="backgroundStacked"/><attr format="reference|color" name="backgroundSplit"/><attr format="reference" name="customNavigationLayout"/><attr name="height"/><attr format="reference" name="homeLayout"/><attr format="reference" name="progressBarStyle"/><attr format="reference" name="indeterminateProgressStyle"/><attr format="dimension" name="progressBarPadding"/><attr format="dimension" name="itemPadding"/></declare-styleable>
@@ -132,7 +133,7 @@
     <declare-styleable name="Spinner"><attr format="reference" name="prompt"/><attr format="enum" name="spinnerMode"><enum name="dialog" value="0"/><enum name="dropdown" value="1"/></attr><attr name="android:dropDownSelector"/><attr name="android:popupBackground"/><attr name="android:dropDownVerticalOffset"/><attr name="android:dropDownHorizontalOffset"/><attr name="android:dropDownWidth"/><attr format="reference" name="popupPromptView"/><attr name="android:gravity"/><attr format="boolean" name="disableChildrenWhenDisabled"/></declare-styleable>
     <declare-styleable name="Theme"><attr format="reference" name="actionDropDownStyle"/><attr format="dimension" name="dropdownListPreferredItemHeight"/><attr format="reference" name="popupMenuStyle"/><attr format="dimension" name="panelMenuListWidth"/><attr format="reference" name="panelMenuListTheme"/><attr format="reference" name="listChoiceBackgroundIndicator"/></declare-styleable>
     <declare-styleable name="View"><attr format="dimension" name="paddingStart"/><attr format="dimension" name="paddingEnd"/><attr name="android:focusable"/></declare-styleable>
-    <!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Kevin/AndroidStudioProjects/TeacherPet/TeachersPet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/res/values/values.xml -->
     <eat-comment/>
     <dimen name="abc_action_bar_default_height">48dip</dimen>
     <dimen name="abc_action_bar_icon_vertical_padding">8dip</dimen>
@@ -151,11 +152,11 @@
     <dimen name="abc_panel_menu_list_width">296dp</dimen>
     <dimen name="abc_search_view_preferred_width">320dip</dimen>
     <dimen name="abc_search_view_text_min_width">160dip</dimen>
-    <!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/C:/Users/Kevin/AndroidStudioProjects/TeacherPet/TeachersPet/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Kevin/AndroidStudioProjects/TeacherPet/TeachersPet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/res/values/values.xml -->
     <eat-comment/>
     <item name="dialog_fixed_height_major" type="dimen">80%</item>
     <item name="dialog_fixed_height_minor" type="dimen">100%</item>
@@ -181,11 +182,11 @@
     <string name="abc_searchview_description_voice">Voice search</string>
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
-    <!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/Kevin/AndroidStudioProjects/TeacherPet/TeachersPet/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_settings">Settings</string>
     <string name="alphabet">abcdefghijklmnopqrstuvwxyz .ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
-    <string name="app_name">TeacherPet</string>
+    <string name="app_name">TeachersPet</string>
     <string name="date">(23 September 2014)</string>
     <string name="hDue">Due Date</string>
     <string name="hGrade">HomeWork Grade</string>
@@ -260,6 +261,8 @@
     <string name="lbl_upload">Upload</string>
     <string name="lbl_wednesday">Wednesday</string>
     <string name="lbl_yes">Yes</string>
+    <string name="login_pwd_hint">Password</string>
+    <string name="login_usr_hint">Username</string>
     <string name="student_login">Catamount</string>
     <string name="student_login2">WCU1</string>
     <string name="title_activity_ATTN">Attendance</string>
@@ -301,7 +304,7 @@
     <string name="title_activity_students">StudentsActivity</string>
     <string name="title_alert">Alert</string>
     <string name="title_grades">Name Grade Complete Tardy</string>
-    <!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/C:/Users/Kevin/AndroidStudioProjects/TeacherPet/TeachersPet/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="ActionButton" parent="@style/BasicButton">
         <item name="android:onClick">onClicked</item>
@@ -337,6 +340,7 @@
     <style name="BasicLayout">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
+        <item name="android:background">@drawable/gradient_bg</item>
         <item name="android:paddingBottom">@dimen/activity_vertical_margin</item>
         <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
         <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
@@ -352,8 +356,7 @@
         <item name="android:layout_centerInParent">true</item>
     </style>
     <style name="PlusButton" parent="@style/CenterVButton">
-        <item name="android:drawableStart">@drawable/ic_add</item>
-        <item name="android:drawableLeft">@drawable/ic_add</item>
+        <item name="android:drawableLeft">@drawable/ic_add2</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_alignParentBottom">true</item>
     </style>
@@ -365,7 +368,7 @@
 	    <item name="android:textSize">12sp</item>
 	    <item name="android:textColor">@android:color/black</item>
     </style>
-    <!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Kevin/AndroidStudioProjects/TeacherPet/TeachersPet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/res/values/values.xml -->
     <eat-comment/>
     <style name="TextAppearance.AppCompat.Base.CompactMenu.Dialog" parent="android:TextAppearance.Medium">
         <item name="android:textColor">@android:color/primary_text_light</item>
@@ -728,7 +731,7 @@
     </style>
     <style name="Theme.Base.AppCompat.Light.DialogWhenLarge" parent="Theme.Base.AppCompat.Light"/>
     <style name="Theme.Base.Light" parent="android:Theme.Light"/>
-    <!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/C:/Users/Kevin/AndroidStudioProjects/TeacherPet/TeachersPet/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="TitleText">
         <item name="android:layout_width">fill_parent</item>
@@ -737,7 +740,7 @@
         <item name="android:gravity">center</item>
         <item name="android:textStyle">bold</item>
     </style>
-    <!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Kevin/AndroidStudioProjects/TeacherPet/TeachersPet/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/res/values/values.xml -->
     <eat-comment/>
     <style name="Widget.AppCompat.ActionBar" parent="Widget.AppCompat.Base.ActionBar"/>
     <style name="Widget.AppCompat.ActionBar.Solid" parent="Widget.AppCompat.Base.ActionBar.Solid"/>
@@ -953,7 +956,7 @@
     <style name="Widget.AppCompat.ProgressBar" parent="Widget.AppCompat.Base.ProgressBar"/>
     <style name="Widget.AppCompat.ProgressBar.Horizontal" parent="Widget.AppCompat.Base.ProgressBar.Horizontal"/>
     <style name="Widget.AppCompat.Spinner.DropDown.ActionBar" parent="Widget.AppCompat.Base.Spinner"/>
-    <!-- From: file:/E:/JC_Computer/Teachers_Pet/TeacherPet/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/C:/Users/Kevin/AndroidStudioProjects/TeacherPet/TeachersPet/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="button">
       <item name="android:layout_width">250dp</item>
@@ -967,6 +970,6 @@
       <item name="android:shadowDx">1</item>
       <item name="android:shadowDy">1</item>
       <item name="android:shadowRadius">2</item>
-    <!-- <item name="android:background">@drawable/mybutton</item> -->
+      <item name="android:background">@drawable/mybutton</item>
     </style>
 </resources>
